@@ -2,8 +2,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgb(214, 214, 214);
-  padding: 15px 40px;
+  background-color: rgb(255, 255, 255);
+  padding: 15px 50px;
   color: #2c3e50;
 }
 
@@ -11,23 +11,52 @@ header h1 {
   font-size: 22px;
   font-weight: bold;
 }
+.logo{
+  width: 80px;
+  height: 80px;
+}
+/* Remove a linha azul padrão e define a cor */
+.nav-link {
+  text-decoration: none;
+  color: #a8a8a8;
+  line-height: 2;
+  position: relative; /* Importante: o link é a referência para a linha */
+  transition: color 0.3s;
+}
 
-nav {
+/* Container para alinhar os links lado a lado */
+.nav-container {
   display: flex;
   gap: 25px;
 }
 
-nav a {
-  text-decoration: none;
-  color: #2c3e50;
-  font-size: 16px;
-  transition: 0.2s;
+/* Criando a linha individual para cada link */
+.nav-link::before {
+  content: '';
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background-color: #c7b40b;
+  position: absolute;
+  bottom: -5px; /* Ajuste a distância da linha aqui */
+  left: 0;
+  
+  /* Estado inicial: invisível e um pouco abaixo */
+  opacity: 0;
+  transform: translateY(5px);
+  transition: transform .4s, opacity .4s;
 }
 
-nav a:hover {
-  color: #305c88;
+/* Efeito ao passar o mouse: a linha sobe e aparece */
+.nav-link:hover::before {
+  transform: translateY(0);
+  opacity: 1;
 }
 
+/* Opcional: mudar a cor do texto no hover */
+.nav-link:hover {
+  color: #2c3e50; /* Um tom dourado para combinar com sua logo */
+}
 /* From Uiverse.io by satyamchaudharydev */ 
 /* From uiverse.io by @satyamchaudharydev */
 /* removing default style of button */
@@ -43,7 +72,7 @@ nav a:hover {
   --width-of-input: 200px;
   --height-of-input: 40px;
   --border-height: 2px;
-  --input-bg: #fff;
+  --input-bg: #e7e7e7;
   --border-color: #2c3e50;
   --border-radius: 30px;
   --after-border-radius: 1px;
@@ -118,4 +147,5 @@ input:not(:placeholder-shown) ~ .reset {
   width: 50px;
   height: 50px;
   padding: auto;
+
 }
