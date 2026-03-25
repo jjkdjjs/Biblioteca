@@ -1,27 +1,52 @@
 import '../pages/Home.css';
 import Header from '../components/Header';
-import './BooksShowcase.css';
 
 const books = [
-  {
-    id: 1,
-    title: "The Jungle Book",
-    category: "Story by",
-    author: "Rudyard Kipling",
-    image: "/jungle-book.jpg", // Substitua pelos seus caminhos
-    avatar: "/rudyard-avatar.jpg",
-    desc: "On a warm evening in the Seeonee hills, a family of wolves finds someone..."
-  },
-  {
-    id: 2,
-    title: "The Wolf Wilder",
-    category: "Novel by",
-    author: "K. Rundell",
-    image: "/wolf-wilder.jpg",
-    avatar: "/rundell-avatar.jpg",
-    desc: "Fairy tale and history merge seamlessly (Publishers Weekly, starred review)..."
-  },
-  // Adicione os outros 3 livros aqui seguindo o mesmo padrão
+{
+  id: 1,
+  title: "Jogos Vorazes (Livro 1)",
+  category: "Story by",
+  author: "Suzanne Collins",
+  image: "https://m.media-amazon.com/images/I/71WOkspHbOL._UF1000,1000_QL80_.jpg",
+  avatar: "https://m.media-amazon.com/images/M/MV5BMTQyODc5Nzc2MF5BMl5BanBnXkFtZTcwNDAwODgxOA@@._V1_.jpg",
+  desc: "Em um futuro distópico, Katniss Everdeen participa de um jogo mortal onde apenas um pode sobreviver."
+},
+{
+  id: 2,
+  title: "Percy Jackson e o Ladrão de Raios",
+  category: "Story by",
+  author: "Rick Riordan",
+  image: "https://m.media-amazon.com/images/I/81mfMi0ni+L._UF1000,1000_QL80_.jpg",
+  avatar: "https://www.btsb.com/btsbcontent/uploads/2013/12/rick-riordan.jpg",
+  desc: "Percy descobre que é filho de um deus grego e embarca em uma missão cheia de perigos e aventuras."
+},
+{
+  id: 3,
+  title: "Extraordinário",
+  category: "Story by",
+  author: "R.J. Palacio",
+  image: "https://m.media-amazon.com/images/I/6132ndvQdiL.jpg",
+  avatar: "https://m.media-amazon.com/images/S/amzn-author-media-prod/41sroqaj9t16luqfel9b9hkmfn.jpg",
+  desc: "Auggie, um garoto com uma condição facial rara, enfrenta desafios ao entrar na escola pela primeira vez."
+},
+{
+  id: 4,
+  title: "Um de Nós Está Mentindo",
+  category: "Story by",
+  author: "Karen M. McManus",
+  image: "https://m.media-amazon.com/images/I/81r6K6pVipL._AC_UF1000,1000_QL80_.jpg",
+  avatar: "https://m.media-amazon.com/images/S/amzn-author-media-prod/oi2ase2qm4v5i4neohill8bnr1.jpg",
+  desc: "Cinco estudantes entram em detenção, mas apenas quatro saem vivos. Todos são suspeitos."
+},
+{
+  id: 5,
+  title: "Heartstopper",
+  category: "Story by",
+  author: "Alice Oseman",
+  image: "https://m.media-amazon.com/images/I/8129HX+5JGL.jpg",
+  avatar: "https://www.hayfestival.com/images/product/large/20066.jpg",
+  desc: "Uma história doce sobre amizade, descobertas e romance entre dois adolescentes."
+}
 ];
 
 function Home() {
@@ -141,7 +166,7 @@ function Home() {
 
                 <div className="showcase-container">
                     <div className="showcase-header">
-                        <h2>Books Showcase</h2>
+                        <h2>Livros em Destaque</h2>
                         <div className="nav-buttons">
                             <button>❮</button>
                             <button>❯</button>
@@ -156,7 +181,7 @@ function Home() {
                                 <div className="book-info">
                                     <h3>{book.title}</h3>
                                     <p className="book-description">
-                                        {book.desc} <span className="more">more</span>
+                                        {book.desc} 
                                     </p>
                                     
                                     <div className="author-section">

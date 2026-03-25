@@ -1,10 +1,31 @@
+/* Variáveis para a paleta de cores */
+:root {
+  --azul-escuro: #1F2A44;
+  --azul-medio: #2E4A7D;
+  --verde-esmeralda: #2F6F5E;
+  --verde-claro: #4C9A85;
+  --dourado: #C9A44C;
+  --dourado-claro: #E5C97A;
+  --branco: #FFFFFF;
+  --cinza-claro: #F2F2F2;
+  --cinza-escuro: #555555;
+}
+
+.container {
+  min-height: 100vh;
+  background-color: var(--azul-escuro); /* Fundo principal azul escuro */
+  display: flex;
+  flex-direction: column;
+}
+
 .banner {
     width: 100%;
     height: 600px;
-    border: 2px solid rgb(246, 252, 255);
+    border: 2px solid var(--branco);
     border-left: none;
     border-right: none;
 }
+
 .generos {
     display: flex;
     flex-wrap: wrap;
@@ -15,6 +36,7 @@
     /* Centraliza os cards na página */
     padding: 2rem;
 }
+
 .titulo-genero {
     width: 100%;
     text-align: left;
@@ -22,8 +44,9 @@
     margin-bottom: 1.5rem;
     margin-left: 1rem;
     font-family: 'lora';
-    color: #2c3e50;
+    color: var(--azul-escuro);
 }
+
 .slider {
     width: 90%;
     height: var(--height);
@@ -48,7 +71,8 @@
     animation: autoRun var(--duration, 40s) linear infinite; 
     
     /* O cálculo do delay também deve usar a mesma duração */
-    animation-delay: calc((var(--duration, 40s) / var(--quantity)) * (var(--position) - 1) * -1) !important;}
+    animation-delay: calc((var(--duration, 40s) / var(--quantity)) * (var(--position) - 1) * -1) !important;
+}
 
 /* Ajuste específico para suas imagens pequenas */
 .slider .image_container img {
@@ -70,8 +94,9 @@
 .slider:hover .item {
     animation-play-state: paused !important;
 }
+
 .showcase-container {
-    background-color: #ffffff;
+    background-color: var(--branco);
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -89,7 +114,7 @@
 
 .showcase-header h2 {
     font-size: 2rem;
-    color: #1a1a1a;
+    color: var(--azul-escuro);
 }
 
 .nav-buttons button {
@@ -98,7 +123,7 @@
     font-size: 1.2rem;
     cursor: pointer;
     padding: 5px 10px;
-    color: #333;
+    color: var(--azul-medio);
 }
 
 .books-grid {
@@ -114,7 +139,7 @@
 
 .book-cover {
     width: 100%;
-    height: 260px;
+    height: 290px;
     object-fit: cover;
     border-radius: 4px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -124,20 +149,14 @@
 .book-info h3 {
     font-size: 1.1rem;
     margin-bottom: 10px;
-    color: #1a1a1a;
+    color: var(--azul-escuro);
 }
 
 .book-description {
     font-size: 0.85rem;
-    color: #666;
+    color: var(--cinza-escuro);
     line-height: 1.4;
     margin-bottom: 15px;
-}
-
-.more {
-    color: #007bff;
-    cursor: pointer;
-    font-weight: bold;
 }
 
 .author-section {
@@ -161,14 +180,14 @@
 
 .category {
     font-size: 0.7rem;
-    color: #999;
+    color: var(--cinza-escuro);
     text-transform: uppercase;
 }
 
 .name {
     font-size: 0.85rem;
     font-weight: bold;
-    color: #333;
+    color: var(--azul-escuro);
 }
 
 /* Responsividade para telas menores */

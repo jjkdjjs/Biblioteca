@@ -6,16 +6,29 @@ body {
 }
 
 .container {
-  height: 100vh;
+  min-height: calc(100vh - 0px); /* usa toda altura mas sem empilhar */
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #F2F2F2;
+  background-color: #2E4A7D; /* cor única */
+  padding: 20px 0; /* sem espaço extra em cima/baixo */
 }
 
 .login-box {
-  width: 340px;
-  height: 520px;
+  width: min(420px, 90%);
+  max-width: 420px;
+  padding: 34px 28px;
+  border-radius: 14px;
+  background: #FFFFFF;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+  text-align: center;
+  border-top: 5px solid #2F6F5E;
+  margin: 0 auto;
+}
+
+.login-box {
+  width: 350px;
+  height: 580px;
   padding: 40px 30px;
   border-radius: 12px;
   background: #FFFFFF;
