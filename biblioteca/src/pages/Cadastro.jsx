@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Cadastro.css';
 
 export default function Cadastro() {
@@ -34,6 +34,11 @@ export default function Cadastro() {
   return (
     <div className="container">
       <div className="login-box">
+        <div className="page-header">
+          <button type="button" className="btn-back" onClick={() => navigate(-1)}>
+            Voltar
+          </button>
+        </div>
 
         <h1 className="titulo">Criar Conta</h1>
         <p className="subtitulo">Cadastro na Biblioteca Escolar</p>
@@ -96,7 +101,7 @@ export default function Cadastro() {
         </form>
 
         <p className="link-login">
-          Já tem conta? <a href="/Login">Entrar</a>
+          Já tem conta? <Link to="/Login">Entrar</Link>
         </p>
 
       </div>

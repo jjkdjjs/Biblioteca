@@ -68,20 +68,16 @@ const Footer = () => {
           <h3>Contato & Horário</h3>
           <div className="footer-contact-list">
             <div className="footer-contact-item">
-              <span className="contact-icon">📍</span>
               <span>{contato.endereco}</span>
             </div>
             <div className="footer-contact-item">
-              <span className="contact-icon">📱</span>
               <span>{contato.telefones}</span>
             </div>
             <div className="footer-contact-item">
-              <span className="contact-icon">✉️</span>
               <span>{contato.email}</span>
             </div>
           </div>
           <div className="horario-box">
-            <p className="horario-label">⏰ Funcionamento</p>
             <p>{contato.horario}</p>
           </div>
         </div>

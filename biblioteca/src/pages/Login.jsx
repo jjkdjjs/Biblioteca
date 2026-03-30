@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
 
 export default function Login() {
@@ -24,6 +24,11 @@ export default function Login() {
   return (
     <div className="container">
       <div className="login-box">
+        <div className="page-header">
+          <button type="button" className="btn-back" onClick={() => navigate(-1)}>
+            Voltar
+          </button>
+        </div>
 
         <h1 className="titulo">Entrar na Conta</h1>
 
@@ -55,7 +60,7 @@ export default function Login() {
           <label>
             <input type="checkbox" /> Lembrar de mim
           </label>
-          <a href="/Cadastro">Criar conta</a>
+          <Link to="/Cadastro">Criar conta</Link>
         </div>
 
         <button className="btn" onClick={handleLogin}>

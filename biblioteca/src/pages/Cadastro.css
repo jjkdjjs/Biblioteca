@@ -1,59 +1,94 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #0f172a;
+  --surface: rgba(255,255,255,0.96);
+  --surface-soft: #f8fafc;
+  --accent: #2F6F5E;
+  --accent-dark: #1F2A44;
+  --gold: #C9A44C;
+  --muted: #475569;
+  --text: #111827;
+  --shadow: 0 28px 60px rgba(15, 23, 42, 0.18);
+}
 
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, rgba(79, 184, 149, 0.16), transparent 32%),
+              linear-gradient(180deg, #12272b 0%, #0b1720 100%);
+  color: var(--text);
 }
 
 .container {
-  min-height: calc(100vh - 0px); /* usa toda altura mas sem empilhar */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #2E4A7D; /* cor única */
-  padding: 20px 0; /* sem espaço extra em cima/baixo */
+  padding: 24px;
 }
 
 .login-box {
-  width: min(420px, 90%);
-  max-width: 420px;
-  padding: 34px 28px;
-  border-radius: 14px;
-  background: #FFFFFF;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.15);
-  text-align: center;
-  border-top: 5px solid #2F6F5E;
-  margin: 0 auto;
+  width: min(500px, 100%);
+  padding: 38px 32px;
+  border-radius: 24px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  position: relative;
 }
 
-.login-box {
-  width: 350px;
-  height: 580px;
-  padding: 40px 30px;
-  border-radius: 12px;
-  background: #FFFFFF;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  text-align: center;
-  border-top: 5px solid #2F6F5E; /* verde pra diferenciar */
+.login-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
+}
+
+.page-header {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 18px;
+}
+
+.btn-back {
+  border: 1px solid rgba(47, 111, 94, 0.35);
+  background: transparent;
+  color: var(--accent-dark);
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.btn-back:hover {
+  background: rgba(47, 111, 94, 0.08);
 }
 
 .titulo {
-  color: #1F2A44;
-  margin-bottom: 5px;
+  margin: 0 0 8px;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
 }
 
 .subtitulo {
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 20px;
+  margin: 0 0 24px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .avatar {
-  width: 60px;
-  height: 60px;
-  margin: 0 auto 20px;
+  width: 74px;
+  height: 74px;
+  margin: 0 auto 24px;
   border-radius: 50%;
-  border: 2px solid #C9A44C;
+  border: 2px solid rgba(201, 164, 76, 0.55);
+  background: var(--surface-soft);
   overflow: hidden;
 }
 
@@ -63,52 +98,75 @@ body {
   object-fit: cover;
 }
 
+.erro {
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(248, 113, 113, 0.12);
+  color: #b91c1c;
+  font-size: 0.95rem;
+}
+
+.input-group {
+  margin-bottom: 16px;
+}
+
 .input-group input {
   width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid #d1d5db;
+  background: var(--surface-soft);
+  font-size: 0.95rem;
   outline: none;
-  
-
-}
-.input-group {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .input-group input:focus {
-  border-color: #2F6F5E;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(47, 111, 94, 0.12);
 }
 
 .btn {
   width: 100%;
-  padding: 10px;
-  background: #2F6F5E; /* verde */
+  padding: 14px 16px;
+  border: 2px solid var(--accent);
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
   color: white;
-  border: none;
-  border-radius: 8px;
+  border-radius: 16px;
   cursor: pointer;
-  margin-top: 10px;
-  transition: 0.3s;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .btn:hover {
-  background: #4C9A85;
+  transform: translateY(-1px);
+  filter: brightness(1.05);
 }
 
 .link-login {
-  margin-top: 15px;
-  font-size: 13px;
+  margin-top: 22px;
+  font-size: 0.95rem;
+  color: var(--muted);
 }
 
 .link-login a {
-  color: #2E4A7D;
+  color: var(--accent);
+  font-weight: 600;
   text-decoration: none;
 }
 
 .link-login a:hover {
-  color: #C9A44C;
+  color: var(--gold);
+}
+
+@media (max-width: 520px) {
+  .login-box {
+    padding: 28px 20px;
+  }
+
+  .titulo {
+    font-size: 1.75rem;
+  }
 }

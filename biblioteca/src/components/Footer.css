@@ -50,6 +50,7 @@
   background: linear-gradient(180deg, var(--azul-escuro) 0%, #0a1220 100%);
   color: var(--branco);
   padding: 60px 2rem 0;
+  height: 100%;
   font-family: var(--fonte-principal);
   border-top: 3px solid var(--dourado);
   animation: fadeInUp 0.8s ease-out;
@@ -260,13 +261,7 @@
   padding-left: 5px;
 }
 
-.contact-icon {
-  font-size: 1.3rem;
-  min-width: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 
 /* Caixa de Horários */
 .horario-box {
@@ -322,7 +317,7 @@
 /* Rodapé Final */
 .footer-bottom {
   border-top: 1px solid rgba(201, 164, 76, 0.3);
-  margin-top: 0;
+  margin-top: 20px;
   padding: 1.5rem 2rem;
   text-align: center;
   font-size: 0.85rem;
