@@ -15,22 +15,19 @@ header h1 {
   width: 80px;
   height: 80px;
 }
-/* Remove a linha azul padrão e define a cor */
 .nav-link {
   text-decoration: none;
   color: #a8a8a8;
   line-height: 2;
-  position: relative; /* Importante: o link é a referência para a linha */
+  position: relative; 
   transition: color 0.3s;
 }
 
-/* Container para alinhar os links lado a lado */
 .nav-container {
   display: flex;
   gap: 25px;
 }
 
-/* Criando a linha individual para cada link */
 .nav-link::before {
   content: '';
   width: 100%;
@@ -38,35 +35,26 @@ header h1 {
   border-radius: 2px;
   background-color: #c7b40b;
   position: absolute;
-  bottom: -5px; /* Ajuste a distância da linha aqui */
+  bottom: -5px; 
   left: 0;
-  
-  /* Estado inicial: invisível e um pouco abaixo */
   opacity: 0;
   transform: translateY(5px);
   transition: transform .4s, opacity .4s;
 }
 
-/* Efeito ao passar o mouse: a linha sobe e aparece */
 .nav-link:hover::before {
   transform: translateY(0);
   opacity: 1;
 }
 
-/* Opcional: mudar a cor do texto no hover */
 .nav-link:hover {
-  color: #2c3e50; /* Um tom dourado para combinar com sua logo */
+  color: #2c3e50; 
 }
-/* From Uiverse.io by satyamchaudharydev */ 
-/* From uiverse.io by @satyamchaudharydev */
-/* removing default style of button */
-
 .form button {
   border: none;
   background: none;
   color: #8b8ba7;
 }
-/* styling of whole input container */
 .form {
   --timing: 0.3s;
   --width-of-input: 200px;
@@ -86,7 +74,6 @@ header h1 {
   transition: border-radius 0.5s ease;
   background: var(--input-bg,#fff);
 }
-/* styling of Input */
 .input {
   font-size: 0.9rem;
   background-color: transparent;
@@ -96,7 +83,6 @@ header h1 {
   padding-block: 0.7em;
   border: none;
 }
-/* styling of animated border */
 .form:before {
   content: "";
   position: absolute;
@@ -110,7 +96,6 @@ header h1 {
   border-radius: 1px;
   transition: transform var(--timing) ease;
 }
-/* Hover on Input */
 .form:focus-within {
   border-radius: var(--after-border-radius);
 }
@@ -118,24 +103,21 @@ header h1 {
 input:focus {
   outline: none;
 }
-/* here is code of animated border */
 .form:focus-within:before {
   transform: scale(1);
 }
-/* styling of close button */
-/* == you can click the close button to remove text == */
 .reset {
   border: none;
   background: none;
   opacity: 0;
   visibility: hidden;
 }
-/* close button shown when typing */
+
 input:not(:placeholder-shown) ~ .reset {
   opacity: 1;
   visibility: visible;
 }
-/* sizing svg icons */
+
 .form svg {
   width: 17px;
   margin-top: 3px;

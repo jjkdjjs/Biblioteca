@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../pages/Home.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -126,6 +127,16 @@ function Home() {
             <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@500;700&display=swap" rel="stylesheet"></link>
             {/* Banner Principal */}
             <img src="/banner-principal.png" alt="Bem-vindo à JDL Biblioteca" className="banner" />
+
+            {/* Botões de Ação Rápida */}
+            <div className="quick-actions-section">
+                <Link to="/renovar" className="quick-action-btn btn-renew">
+                    Renovar Empréstimo
+                </Link>
+                <Link to="/reservar" className="quick-action-btn btn-reserve">
+                    Reservar Livro
+                </Link>
+            </div>
 
             {/* Seção de Gêneros */}
             <div className="generos">
@@ -280,7 +291,7 @@ function Home() {
                         </div>
                         <div className="library-info-card">
                             <h3>Valor da Diária</h3>
-                            <p>A multa é R$ 1,50 por livro por dia de atraso. Entregue no prazo para manter a conta em dia.</p>
+                            <p>A multa é R$ 0,25 por livro por dia de atraso. Entregue no prazo para manter a conta em dia.</p>
                         </div>
                         <div className="library-info-card">
                             <h3>Tempo de Empréstimo</h3>
@@ -292,6 +303,43 @@ function Home() {
                         </div>
                     </div>
                 </div>
+                <section className="clube-livro-section">
+                    <div className="clube-livro-container">
+
+                        {/* Imagem com detalhe decorativo */}
+                        <div className="clube-livro-image-area">
+                            <div className="decorator-box"></div>
+                            <img
+                                src="https://scontent-gru2-1.xx.fbcdn.net/v/t51.82787-15/568882018_18489359881073081_7081161621605463211_n.webp?stp=dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=13d280&_nc_ohc=wNo_xNs0llYQ7kNvwHMTsM5&_nc_oc=AdrJilPb3zUw0KI1NuJ6_D-ihwJi1krpvR3jxZJAN88CAZtHY-AvERraX5ZcsIsWKaw&_nc_zt=23&_nc_ht=scontent-gru2-1.xx&_nc_gid=Qgp2ozCSQ5wH1342U2PkyA&_nc_ss=7a389&oh=00_AfxabVlh-xruSjHNoetUpPE0GMU9T-veB3DvbhWtEvDzLA&oe=69D049EA"
+                                alt="Integrantes do Clube do Livro"
+                                className="clube-livro-img"
+                            />
+                        </div>
+
+                        {/* Conteúdo de Texto */}
+                        <div className="clube-livro-content">
+                            <h2 className="clube-livro-title">
+                                Faça parte do nosso <br />
+                                <span className="clube-livro-highlight">Clube do Livro</span>
+                            </h2>
+
+                            <p className="clube-livro-text">
+                                Compartilhe ideias, descubra novas perspectivas e conecte-se com outros leitores apaixonados. Nossos encontros semanais são o lugar perfeito para quem busca mergulhar fundo na literatura.
+                            </p>
+
+                            <div className="clube-livro-actions">
+                                <button className="btn-clube-primary">Participar Agora</button>
+                                <button className="btn-clube-outline">Ver Próximas Leituras</button>
+                            </div>
+
+                            <div className="clube-livro-footer">
+                                <span className="dot-active"></span>
+                                Encontros: Terças e Sextas, às 19h
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
             </div>
             <Footer />
         </div>
