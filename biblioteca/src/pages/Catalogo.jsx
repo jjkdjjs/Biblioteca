@@ -25,44 +25,58 @@ export default function Catalogo() {
     });
 
     return (
-        <div className="container">
+        <div className="catalogo-page">
             <Header />
-            <div className="catalogo-box">
-                <h1 className="titulo">Catálogo de Livros</h1>
+            <main className="catalogo-content">
+                <section className="catalogo-panel">
+                <h1 className="catalogo-title">Catálogo de Livros</h1>
+                <p className="catalogo-intro">
+                    Busque pelo título ou selecione uma categoria para encontrar o livro certo. É rápido e intuitivo.
+                </p>
 
-                <div className="filtros">
-                    <input
-                        type="text"
-                        placeholder="Buscar livro..."
-                        value={busca}
-                        onChange={(e) => setBusca(e.target.value)}
-                    />
+                <div className="catalogo-filters">
+                    <label className="catalogo-field">
+                        <span>Buscar livro</span>
+                        <input
+                            type="text"
+                            placeholder="Digite o nome do livro"
+                            value={busca}
+                            onChange={(e) => setBusca(e.target.value)}
+                        />
+                    </label>
 
-                    <select
-                        value={categoria}
-                        onChange={(e) => setCategoria(e.target.value)}
-                    >
-                        {categorias.map((cat, index) => (
-                            <option key={index} value={cat}>{cat}</option>
-                        ))}
-                    </select>
+                    <label className="catalogo-field">
+                        <span>Categoria</span>
+                        <select
+                            value={categoria}
+                            onChange={(e) => setCategoria(e.target.value)}
+                        >
+                            {categorias.map((cat, index) => (
+                                <option key={index} value={cat}>{cat}</option>
+                            ))}
+                        </select>
+                    </label>
                 </div>
 
                 <div className="livros-grid">
                     {livrosFiltrados.map((livro, index) => (
-                        <div key={index} className="livro-card">
+                        <article key={index} className="livro-card">
                             <img
                                 src={livro.capa}
                                 alt={livro.titulo}
                                 onError={(e) => e.target.src = '/capa-padrao.png'}
-                            /><h3>{livro.titulo}</h3>
-                            <p>{livro.categoria}</p>
-                            <button>Reservar</button>
-                        </div>
+                            />
+                            <div className="livro-info">
+                                <h3>{livro.titulo}</h3>
+                                <p className="livro-category">{livro.categoria}</p>
+                                <button className="livro-btn">Reservar</button>
+                            </div>
+                        </article>
                     ))}
                 </div>
 
-            </div>
+                </section>
+            </main>
         </div>
     );
 }
