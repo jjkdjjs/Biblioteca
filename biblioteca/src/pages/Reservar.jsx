@@ -79,7 +79,7 @@ function Reservar() {
       <Header />
       <div className="reservar-content">
         <div className="reservar-header">
-          <h1>📚 Reservar Livros</h1>
+          <h1>Reserva de Livros</h1>
           <p>Escolha os livros que deseja reservar na biblioteca</p>
         </div>
 

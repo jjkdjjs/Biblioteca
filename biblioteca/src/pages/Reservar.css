@@ -13,7 +13,7 @@
 }
 
 .reservar-container {
-  min-height: 100vh;
+  min-height: 90vh;
   background-color: var(--azul-escuro);
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@
 
 .reservar-content {
   flex: 1;
-  max-width: 1400px;
+  max-width: 1300px;
   width: 100%;
   margin: 0 auto;
   padding: 60px 20px;

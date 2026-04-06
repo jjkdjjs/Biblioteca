@@ -122,11 +122,11 @@ function Home() {
     };
 
     return (
-        <div>
+        <div className="home-wrapper">
             <Header />
             <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@500;700&display=swap" rel="stylesheet"></link>
             {/* Banner Principal */}
-            <img src="/banner-principal.png" alt="Bem-vindo à JDL Biblioteca" className="banner" />
+            <img src="/banner-principal.jpg" alt="Bem-vindo à JDL Biblioteca" className="banner" />
 
             {/* Botões de Ação Rápida */}
             <div className="quick-actions-section">
@@ -157,90 +157,90 @@ function Home() {
                     <div className="list">
                         {/* Card 1: Fantasia */}
                         <div className="item" style={{ '--position': 1 }}>
-                            <a href="/catalogo/fantasia" className="card-link">
+                            <Link to="/catalogo?categoria=Fantasia" className="card-link">
                                 <div className="card">
                                     <div className="image_container">
                                         <img src="/image-fantasia.png" alt="Fantasia" className="image-fantasia" />
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
 
                         {/* Card 2: HQ e Manga */}
                         <div className="item" style={{ '--position': 2 }}>
-                            <a href="/catalogo/hqs" className="card-link">
+                            <Link to="/catalogo?categoria=Mistério" className="card-link">
                                 <div className="card">
                                     <div className="image_container">
                                         <img src="/image-hq-manga.png" alt="HQs e Mangás" className="image-fantasia" />
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
 
                         {/* Card 3: Amor e Drama */}
                         <div className="item" style={{ '--position': 3 }}>
-                            <a href="/catalogo/amor" className="card-link">
+                            <Link to="/catalogo?categoria=Drama" className="card-link">
                                 <div className="card">
                                     <div className="image_container">
                                         <img src="/image-amor-drama.png" alt="Amor e Drama" className="image-fantasia" />
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
 
                         {/* Card 4: Mistério */}
                         <div className="item" style={{ '--position': 4 }}>
-                            <a href="/catalogo/misterio" className="card-link">
+                            <Link to="/catalogo?categoria=Mistério" className="card-link">
                                 <div className="card">
                                     <div className="image_container">
                                         <img src="/image-misterio-investigacao.png" alt="Mistério" className="image-fantasia" />
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
 
                         {/* Card 5: Poesia */}
                         <div className="item" style={{ '--position': 5 }}>
-                            <a href="/catalogo/poesia" className="card-link">
+                            <Link to="/catalogo?categoria=Poesia" className="card-link">
                                 <div className="card">
                                     <div className="image_container">
                                         <img src="/image-poesias-cronicas.png" alt="Poesias" className="image-fantasia" />
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
 
                         {/* Card 6: Aventura */}
                         <div className="item" style={{ '--position': 6 }}>
-                            <a href="/catalogo/aventura" className="card-link">
+                            <Link to="/catalogo?categoria=Aventura" className="card-link">
                                 <div className="card">
                                     <div className="image_container">
                                         <img src="/image-aventura.png" alt="Aventura" className="image-fantasia" />
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
 
                         {/* Card 7: Literatura Brasileira */}
                         <div className="item" style={{ '--position': 7 }}>
-                            <a href="/catalogo/literatura-brasileira" className="card-link">
+                            <Link to="/catalogo?categoria=Literatura Brasileira" className="card-link">
                                 <div className="card">
                                     <div className="image_container">
                                         <img src="/image-literaturabrasileira.png" alt="Literatura Brasileira" className="image-fantasia" />
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
 
                         {/* Card 8: Biografia */}
                         <div className="item" style={{ '--position': 8 }}>
-                            <a href="/catalogo/biografia" className="card-link">
+                            <Link to="/catalogo?categoria=Biografia" className="card-link">
                                 <div className="card">
                                     <div className="image_container">
                                         <img src="/image-biografias.png" alt="Biografia" className="image-fantasia" />
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -328,8 +328,8 @@ function Home() {
                             </p>
 
                             <div className="clube-livro-actions">
-                                <button className="btn-clube-primary">Participar Agora</button>
-                                <button className="btn-clube-outline">Ver Próximas Leituras</button>
+                                <a href="/" className="btn-clube-primary">Participar Agora</a>
+                                <a href="/" className="btn-clube-outline">Ver Próximas Leituras</a>
                             </div>
 
                             <div className="clube-livro-footer">

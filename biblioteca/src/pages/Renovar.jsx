@@ -49,7 +49,7 @@ function Renovar() {
       <Header />
       <div className="renovar-content">
         <div className="renovar-header">
-          <h1>🔄 Renovar Empréstimos</h1>
+          <h1>Renovar Empréstimos</h1>
           <p>Renove seus empréstimos facilmente e estenda o prazo de devolução</p>
         </div>
 
