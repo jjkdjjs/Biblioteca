@@ -224,7 +224,7 @@ function Home() {
                     <div className="clube-livro-container">
                         <div className="clube-livro-image-area">
                             <div className="decorator-box"></div>
-                            <img src="https://scontent-gru2-1.xx.fbcdn.net/v/t51.82787-15/568882018_18489359881073081_7081161621605463211_n.webp?stp=dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=13d280&_nc_ohc=-eeG9vz-03sQ7kNvwGDUgGt&_nc_oc=AdoRJBjyWL0OsI1gwMg-WmIBG6ktbJ4-SJx1zv8Imsbl5KN0GUAI7yodEOy77lukRAQ&_nc_zt=23&_nc_ht=scontent-gru2-1.xx&_nc_gid=GymyV_0ccvq0n6MX4xYYYQ&_nc_ss=7a389&oh=00_Af2AuAiscdTsqObpnmtRYJZjLk64vjWh1aM06D9Un4166A&oe=69DA9DAA" alt="Clube" className="clube-livro-img" />
+                            <img src="/ClubeLivroFoto.png" alt="Clube" className="clube-livro-img" />
                         </div>
                         <div className="clube-livro-content">
                             <h2 className="clube-livro-title">Faça parte do nosso <br /><span className="clube-livro-highlight">Clube do Livro</span></h2>
@@ -248,7 +248,6 @@ function Home() {
                         <p>Deixe seu contato para enviarmos tudo por e-mail!</p>
 
                         <form action="https://api.staticforms.xyz/submit" method="post">
-                            {/* SUBSTITUA PELA SUA CHAVE ABAIXO */}
                             <input type="hidden" name="accessKey" value="sf_4156f109abaca6a3b983318b" />
                             <input type="hidden" name="subject" value={`Interesse: ${modalType}`} />
 

@@ -27,7 +27,6 @@ function MeusLivros() {
       dataRetirada: "2024-03-29",
       prazoDevolucao: "2024-04-12"
     }
-    // ... outros livros do seu array
   ]);
 
   const formatarData = (data) => new Date(data).toLocaleDateString('pt-BR');

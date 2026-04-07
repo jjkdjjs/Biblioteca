@@ -5,13 +5,24 @@ import './Login.css';
 
 export default function Login() {
   const navigate = useNavigate();
-  const { fotoPerfil, atualizarFotoPerfil } = usePerfil();
+  const { fotoPerfil, atualizarFotoPerfil } = usePerfil(); // Se houver função de limpar perfil no contexto, use aqui
   const fileInputRef = useRef(null);
 
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
   const [erro, setErro] = useState('');
   const [sucesso, setSucesso] = useState('');
+
+  // FUNÇÃO PARA SAIR DA CONTA
+  const handleLogout = () => {
+    // Se você estiver usando localStorage:
+    // localStorage.removeItem('token'); 
+
+    setSucesso('Saindo da conta...');
+    setTimeout(() => {
+      navigate('/'); // Redireciona para a Home
+    }, 1000);
+  };
 
   const handleFotoChange = (event) => {
     const file = event.target.files[0];
@@ -51,7 +62,7 @@ export default function Login() {
       return;
     }
 
-    // Lógica de autenticação aqui
+    // Lógica de autenticação 
     setSucesso('Login realizado com sucesso!');
     setTimeout(() => navigate('/'), 1500);
   };
@@ -62,6 +73,11 @@ export default function Login() {
         <div className="auth-header">
           <button type="button" className="btn-back" onClick={() => navigate(-1)}>
             ← Voltar
+          </button>
+
+          {/* NOVO BOTÃO DE SAIR */}
+          <button type="button" className="btn-logout" onClick={handleLogout}>
+            Sair da Conta
           </button>
         </div>
 

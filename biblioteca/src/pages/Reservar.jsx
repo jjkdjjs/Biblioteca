@@ -3,7 +3,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import './Reservar.css';
 
-// Nota: Se você usar FontAwesome, substitua os <i> pelas tags da biblioteca
 function Reservar() {
   const [busca, setBusca] = useState("");
   const [livrosDisponiveis] = useState([
@@ -117,7 +116,6 @@ function Reservar() {
                           e.stopPropagation();
                           toggleReserva(livro);
                         }}>
-                           {/* Ícone de Lixeira ou X aqui */}
                            <span>×</span>
                         </button>
                       </li>
@@ -126,7 +124,6 @@ function Reservar() {
 
                   <div className="info-regras">
                     <div className="regra-header">
-                      {/* Ícone de Informação aqui */}
                       <strong>Regras de Retirada</strong>
                     </div>
                     <ul>

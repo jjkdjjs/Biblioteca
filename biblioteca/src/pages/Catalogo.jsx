@@ -85,7 +85,6 @@ export default function Catalogo() {
     ];
         
 
-    // Adicionadas categorias que faltavam na Home
     const categorias = ['Todos', 'Romance', 'Fantasia', 'Infantil', 'Mistério', 'Ficção Científica', 'Literatura Brasileira', 'Drama', 'Poesia', 'HQs e Mangás', 'Aventura', 'Biografia'];
 
     const livrosFiltrados = livros.filter((livro) => {

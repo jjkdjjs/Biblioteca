@@ -5,7 +5,6 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Fundo */
 .container {
   min-height: 100vh;
   display: flex;
@@ -15,7 +14,6 @@ body {
   padding: 20px;
 }
 
-/* Card principal */
 .perfil-box {
   width: 400px;
   padding: 30px;
@@ -25,7 +23,6 @@ body {
   border-top: 5px solid #2E4A7D;
 }
 
-/* Header (foto + nome) */
 .perfil-header {
   text-align: center;
   margin-bottom: 20px;
@@ -42,7 +39,6 @@ body {
   color: #555;
 }
 
-/* Avatar */
 .avatar {
   width: 90px;
   height: 90px;
@@ -59,7 +55,6 @@ body {
   object-fit: cover;
 }
 
-/* Informações */
 .perfil-info {
   margin-top: 20px;
 }
@@ -76,7 +71,6 @@ body {
   margin: 5px 0;
 }
 
-/* Seções (livros) */
 .perfil-section {
   margin-top: 20px;
 }
@@ -106,7 +100,6 @@ body {
   background: #EFEFEF;
 }
 
-/* Responsivo */
 @media (max-width: 480px) {
   .perfil-box {
     width: 100%;

@@ -10,7 +10,7 @@ function LivroDetalhe() {
   const navigate = useNavigate();
   const { adicionarFavorito, isFavorito } = useFavoritos();
 
-  // Dados dos livros (em uma aplicação real, isso viria de uma API)
+  // Dados dos livros 
   const livros = [
     // Romance
     { id: 1, titulo: 'Dom Casmurro', autor: 'Machado de Assis', categoria: 'Romance', capa: 'https://i.pinimg.com/1200x/cb/b5/ac/cbb5ac9e879c51ef9117b784026a1f2b.jpg', editora: 'Companhia das Letras', ano: 1899, paginas: 208, resumo: 'Romance psicológico que narra a história de Bentinho e Capitu, explorando temas como ciúme, traição e a natureza humana. A narrativa é contada em primeira pessoa pelo protagonista, criando uma atmosfera de dúvida e suspeita ao longo da obra.' },

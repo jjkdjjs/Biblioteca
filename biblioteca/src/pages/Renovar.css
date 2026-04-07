@@ -11,7 +11,6 @@
   --fonte-principal: 'Poppins', sans-serif;
   --fonte-secundaria: 'Open Sans', sans-serif;
 }
-/* Variáveis e Animações integradas */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
@@ -19,7 +18,6 @@
 
 .renovar-container {
   min-height: 100vh;
-  /* Gradiente radial para profundidade, como no catálogo */
   background: radial-gradient(circle at top right, var(--azul-medio), var(--azul-escuro));
   display: flex;
   flex-direction: column;
@@ -34,7 +32,6 @@
   animation: fadeInUp 0.8s ease-out;
 }
 
-/* Header com estilo da Home */
 .renovar-header {
   text-align: center;
   margin-bottom: 60px;
@@ -59,14 +56,12 @@
   margin: 0 auto;
 }
 
-/* Grid de Empréstimos */
 .emprestimos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 30px;
 }
 
-/* Card Estilizado */
 .emprestimo-card {
   background-color: var(--branco);
   border-radius: 18px;
@@ -88,7 +83,6 @@
   width: 100%;
   height: 220px;
   object-fit: cover;
-  /* Efeito de sobreposição leve na imagem */
   filter: sepia(20%) contrast(110%);
 }
 
@@ -117,7 +111,6 @@
   margin-bottom: 10px;
 }
 
-/* Detalhes da Renovação */
 .info-detalhe {
   display: flex;
   justify-content: space-between;
@@ -144,7 +137,6 @@
   color: var(--cinza-escuro);
 }
 
-/* Botão de Renovação Estilo "Ação Rápida" */
 .btn-renovar {
   background: linear-gradient(135deg, var(--verde-esmeralda), var(--verde-claro));
   color: var(--branco);
@@ -175,7 +167,6 @@
   box-shadow: none;
 }
 
-/* Estado Vazio com Glassmorphism */
 .no-emprestimos {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
@@ -192,7 +183,6 @@
   opacity: 0.8;
 }
 
-/* Badge de Alerta (Opcional - caso o livro esteja atrasado) */
 .badge-atrasado {
   position: absolute;
   top: 15px;
