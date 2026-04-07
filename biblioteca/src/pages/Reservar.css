@@ -11,10 +11,15 @@
   --fonte-principal: 'Poppins', sans-serif;
   --fonte-secundaria: 'Open Sans', sans-serif;
 }
+/* Reutilizando animações para fluidez */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 .reservar-container {
-  min-height: 90vh;
-  background-color: var(--azul-escuro);
+  min-height: 100vh;
+  background: radial-gradient(circle at top right, var(--azul-medio), var(--azul-escuro));
   display: flex;
   flex-direction: column;
 }
@@ -25,274 +30,400 @@
   width: 100%;
   margin: 0 auto;
   padding: 60px 20px;
+  animation: fadeInUp 0.8s ease-out;
 }
 
+/* Header alinhado ao padrão Home */
 .reservar-header {
   text-align: center;
   margin-bottom: 50px;
-  color: var(--branco);
 }
 
 .reservar-header h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
   font-family: var(--fonte-principal);
-  color: var(--dourado);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  background: linear-gradient(to right, var(--dourado-claro), var(--dourado));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
 }
 
 .reservar-header p {
-  font-size: 1.2rem;
-  color: var(--cinza-claro);
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
   font-family: var(--fonte-secundaria);
 }
 
 .reservar-layout {
   display: grid;
-  grid-template-columns: 1fr 350px;
-  gap: 30px;
+  grid-template-columns: 1fr 380px;
+  gap: 40px;
+  align-items: start;
 }
 
 .livros-disponibles h2 {
+  font-family: var(--fonte-principal);
   font-size: 1.8rem;
   color: var(--branco);
-  margin-bottom: 20px;
-  font-family: var(--fonte-principal);
+  margin-bottom: 25px;
+  border-left: 4px solid var(--dourado);
+  padding-left: 15px;
 }
 
+/* Grid de Livros */
 .livros-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 25px;
 }
 
+/* Card de Reserva */
 .livro-card {
   background-color: var(--branco);
-  border-radius: 10px;
+  border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   display: flex;
   flex-direction: column;
-  cursor: pointer;
-  border: 3px solid transparent;
+  border: 2px solid transparent;
+  position: relative;
 }
 
 .livro-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
+/* Estado Selecionado Profissional */
 .livro-card.selecionado {
   border-color: var(--verde-esmeralda);
-  background-color: #f0f8f6;
+  box-shadow: 0 0 0 4px rgba(47, 111, 94, 0.2);
+}
+
+.livro-card.selecionado::after {
+  content: '✓ Selecionado';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--verde-esmeralda);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  z-index: 2;
 }
 
 .livro-image {
   width: 100%;
-  height: 250px;
+  height: 260px;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.livro-card:hover .livro-image {
+  transform: scale(1.05);
 }
 
 .livro-info {
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+  padding: 20px;
+  gap: 8px;
 }
 
 .livro-info h3 {
   font-size: 1.1rem;
   color: var(--azul-escuro);
-  margin-bottom: 5px;
   font-family: var(--fonte-principal);
   font-weight: 700;
-  line-height: 1.3;
-}
-
-.livro-info .autor {
-  color: var(--cinza-escuro);
-  font-size: 0.85rem;
-  margin-bottom: 8px;
-  font-family: var(--fonte-secundaria);
+  min-height: 2.8rem;
 }
 
 .categoria {
-  display: inline-block;
-  background-color: var(--azul-medio);
-  color: var(--branco);
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  margin-bottom: 10px;
-  width: fit-content;
-  font-family: var(--fonte-principal);
+  background: rgba(46, 74, 125, 0.1);
+  color: var(--azul-medio);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-transform: uppercase;
 }
 
+/* Alerta de Fila com visual de aviso suave */
 .posicao-fila {
-  background-color: #fef3cd;
-  color: #856404;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  margin-bottom: 10px;
-  font-family: var(--fonte-principal);
-}
-
-.btn-reservar {
-  background-color: var(--dourado);
-  color: var(--azul-escuro);
-  border: none;
-  padding: 10px 16px;
-  border-radius: 6px;
-  cursor: pointer;
+  background-color: #fff9db;
+  color: #947600;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.8rem;
   font-weight: 600;
-  transition: all 0.3s ease;
-  margin-top: auto;
-  font-family: var(--fonte-principal);
-  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.btn-reservar:hover {
-  background-color: var(--dourado-claro);
-  transform: translateY(-2px);
+/* Botão do Card */
+.btn-reservar {
+  background: var(--cinza-claro);
+  color: var(--azul-escuro);
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  margin-top: 15px;
+  transition: all 0.3s ease;
 }
 
 .btn-reservar.ativo {
-  background-color: var(--verde-esmeralda);
-  color: var(--branco);
+  background: linear-gradient(135deg, var(--dourado), var(--dourado-claro));
+  color: var(--azul-escuro);
 }
 
-.btn-reservar.ativo:hover {
-  background-color: var(--verde-claro);
-}
-
+/* Card de Resumo (Checkout) */
 .resumo-card {
-  background-color: var(--branco);
-  border-radius: 12px;
-  padding: 25px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  background: var(--branco);
+  border-radius: 20px;
+  padding: 35px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+  border-top: 6px solid var(--verde-esmeralda);
   position: sticky;
-  top: 20px;
-  height: fit-content;
+  top: 30px;
 }
 
 .resumo-card h2 {
-  font-size: 1.5rem;
-  color: var(--azul-escuro);
-  margin-bottom: 20px;
   font-family: var(--fonte-principal);
-}
-
-.vazio {
-  color: var(--cinza-escuro);
+  font-size: 1.6rem;
+  color: var(--azul-escuro);
+  margin-bottom: 25px;
   text-align: center;
-  padding: 30px 0;
-  font-family: var(--fonte-secundaria);
-}
-
-.lista-selecionados {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 20px;
-  max-height: 400px;
-  overflow-y: auto;
 }
 
 .lista-selecionados li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px;
+  padding: 15px 0;
   border-bottom: 1px solid var(--cinza-claro);
-  font-size: 0.95rem;
-  font-family: var(--fonte-secundaria);
-  color: var(--cinza-escuro);
+  animation: fadeInLeft 0.4s ease-out;
 }
 
-.lista-selecionados li:last-child {
-  border-bottom: none;
+.lista-selecionados li span {
+  font-weight: 600;
+  color: var(--azul-escuro);
 }
 
 .btn-remover {
-  background: none;
-  border: none;
-  color: var(--azul-medio);
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: color 0.2s;
+  color: #ff4757;
+  font-size: 1.2rem;
+  opacity: 0.6;
 }
 
 .btn-remover:hover {
-  color: var(--azul-escuro);
+  opacity: 1;
+  transform: scale(1.2);
 }
 
 .total-selecionados {
-  background-color: var(--cinza-claro);
-  padding: 15px;
-  border-radius: 6px;
-  text-align: center;
-  margin-bottom: 15px;
-  font-family: var(--fonte-principal);
-  color: var(--azul-escuro);
+  background: var(--azul-escuro);
+  color: var(--branco);
+  padding: 20px;
+  border-radius: 12px;
+  margin: 25px 0;
 }
 
 .total-selecionados strong {
-  font-size: 1.3rem;
-  color: var(--verde-esmeralda);
+  color: var(--dourado-claro);
+  font-size: 1.5rem;
 }
 
+/* Botão Confirmar Final */
 .btn-confirmar {
-  width: 100%;
-  background-color: var(--verde-esmeralda);
-  color: var(--branco);
-  border: none;
-  padding: 14px;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: var(--fonte-principal);
+  background: linear-gradient(135deg, var(--verde-esmeralda), var(--verde-claro));
+  padding: 20px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  box-shadow: 0 10px 20px rgba(47, 111, 94, 0.3);
 }
 
 .btn-confirmar:hover {
-  background-color: var(--verde-claro);
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(47, 111, 94, 0.5);
+}
+.search-container {
+  max-width: 500px;
+  margin: 20px auto 0;
 }
 
+.search-input {
+  width: 100%;
+  padding: 15px 25px;
+  border-radius: 30px;
+  border: 1px solid rgba(201, 164, 76, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.search-input:focus {
+  background: white;
+  color: var(--azul-escuro);
+  box-shadow: 0 0 15px var(--dourado);
+}
+
+.info-regras {
+  background: #fff4e5;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  color: #664d03;
+  margin-bottom: 20px;
+  border-left: 4px solid var(--dourado);
+}
+
+.info-regras ul {
+  list-style: none;
+  padding: 5px 0 0 0;
+}
+
+.item-info-resumo {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-info-resumo span {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 50px;
+  color: rgba(255,255,255,0.5);
+  font-size: 1.2rem;
+}
+/* Badge da Instituição */
+.instituicao-tag {
+  display: inline-block;
+  background: var(--verde-esmeralda);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+/* Espaçamento para ícones externos */
+.icon-placeholder, .vazio-icon-placeholder, .search-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dourado);
+  font-size: 1.2rem;
+}
+
+/* Estilo da Busca */
+.search-container {
+  position: relative;
+  max-width: 500px;
+  margin: 20px auto 0;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  padding: 15px 25px;
+  border-radius: 8px; /* Mais quadrado para parecer acadêmico */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  font-family: var(--fonte-secundaria);
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  background: white;
+  color: var(--azul-escuro);
+  border-color: var(--dourado);
+}
+
+/* Caixa de Regras Estilizada */
+.info-regras {
+  background: var(--cinza-claro);
+  padding: 20px;
+  border-radius: 12px;
+  border-left: 5px solid var(--azul-medio);
+  margin-bottom: 25px;
+}
+
+.regra-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--azul-escuro);
+  margin-bottom: 10px;
+}
+
+.info-regras ul {
+  list-style: none;
+  padding: 0;
+}
+
+.info-regras li {
+  font-size: 0.85rem;
+  color: var(--cinza-escuro);
+  margin-bottom: 5px;
+  padding-left: 15px;
+  position: relative;
+}
+
+/* Bullet customizado (substitui emoji) */
+.info-regras li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  background: var(--verde-esmeralda);
+  border-radius: 50%;
+}
+
+/* Card Selecionado */
+.livro-card.selecionado {
+  border: 2px solid var(--verde-esmeralda);
+  background: #f8fff9;
+}
+
+/* Botão de Remover no Resumo */
+.btn-remover {
+  background: rgba(255, 71, 87, 0.1);
+  color: #ff4757;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-remover:hover {
+  background: #ff4757;
+  color: white;
+}
+/* Responsividade */
 @media (max-width: 1024px) {
-  .reservar-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .resumo-card {
-    position: static;
-  }
-
-  .livros-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  }
+  .reservar-layout { grid-template-columns: 1fr; }
+  .resumo-card { position: relative; top: 0; }
 }
 
 @media (max-width: 768px) {
-  .reservar-content {
-    padding: 40px 15px;
-  }
-
-  .reservar-header h1 {
-    font-size: 2rem;
-  }
-
-  .livros-grid {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 15px;
-  }
-
-  .livro-info {
-    padding: 12px;
-  }
-
-  .livro-info h3 {
-    font-size: 0.95rem;
-  }
+  .livros-grid { grid-template-columns: repeat(2, 1fr); }
+  .reservar-header h1 { font-size: 2.2rem; }
 }

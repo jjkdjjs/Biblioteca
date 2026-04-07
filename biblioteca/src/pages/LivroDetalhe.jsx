@@ -133,7 +133,7 @@ function LivroDetalhe() {
 
             <div className="livro-acoes">
               <Link to="/reservar" className="btn-reservar-grande">
-                📚 Reservar Este Livro
+                Reservar Este Livro
               </Link>
               <Link to="/favoritos" className="btn-ver-favoritos">
                 Ver Meus Favoritos

@@ -5,6 +5,9 @@ header {
   background-color: rgb(255, 255, 255);
   padding: 15px 50px;
   color: #2c3e50;
+  position: sticky; /* Faz o elemento "grudar" ao rolar */
+  top: 0;           /* Define onde ele deve grudar (no topo 0) */
+  z-index: 1000;
 }
 
 header h1 {

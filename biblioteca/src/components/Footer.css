@@ -54,6 +54,7 @@
   font-family: var(--fonte-principal);
   border-top: 3px solid var(--dourado);
   animation: fadeInUp 0.8s ease-out;
+  margin-top: 30px;
 }
 
 /* Conteúdo Principal */

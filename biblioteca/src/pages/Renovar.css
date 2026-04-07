@@ -11,10 +11,16 @@
   --fonte-principal: 'Poppins', sans-serif;
   --fonte-secundaria: 'Open Sans', sans-serif;
 }
+/* Variáveis e Animações integradas */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 .renovar-container {
   min-height: 100vh;
-  background-color: var(--azul-escuro);
+  /* Gradiente radial para profundidade, como no catálogo */
+  background: radial-gradient(circle at top right, var(--azul-medio), var(--azul-escuro));
   display: flex;
   flex-direction: column;
 }
@@ -25,144 +31,182 @@
   width: 100%;
   margin: 0 auto;
   padding: 60px 20px;
+  animation: fadeInUp 0.8s ease-out;
 }
 
+/* Header com estilo da Home */
 .renovar-header {
   text-align: center;
-  margin-bottom: 50px;
-  color: var(--branco);
+  margin-bottom: 60px;
 }
 
 .renovar-header h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
   font-family: var(--fonte-principal);
-  color: var(--dourado);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 15px;
+  background: linear-gradient(to right, var(--dourado-claro), var(--dourado));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
 }
 
 .renovar-header p {
-  font-size: 1.2rem;
-  color: var(--cinza-claro);
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
   font-family: var(--fonte-secundaria);
+  max-width: 600px;
+  margin: 0 auto;
 }
 
+/* Grid de Empréstimos */
 .emprestimos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 30px;
-  margin-bottom: 40px;
 }
 
+/* Card Estilizado */
 .emprestimo-card {
   background-color: var(--branco);
-  border-radius: 12px;
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
+  border-bottom: 4px solid var(--dourado); /* Detalhe da Home */
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .emprestimo-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-bottom-color: var(--verde-esmeralda);
 }
 
 .emprestimo-image {
   width: 100%;
-  height: 280px;
+  height: 220px;
   object-fit: cover;
+  /* Efeito de sobreposição leve na imagem */
+  filter: sepia(20%) contrast(110%);
 }
 
 .emprestimo-info {
-  padding: 20px;
+  padding: 25px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  gap: 10px;
 }
 
 .emprestimo-info h3 {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   color: var(--azul-escuro);
-  margin-bottom: 5px;
   font-family: var(--fonte-principal);
   font-weight: 700;
+  line-height: 1.2;
 }
 
 .autor {
-  color: var(--cinza-escuro);
-  font-size: 0.9rem;
-  margin-bottom: 15px;
-  font-family: var(--fonte-secundaria);
+  color: var(--verde-esmeralda);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
 }
 
+/* Detalhes da Renovação */
 .info-detalhe {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--cinza-claro);
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--cinza-claro);
+}
+
+.info-detalhe:last-of-type {
+  border-bottom: none;
+  margin-bottom: 15px;
 }
 
 .info-detalhe .label {
-  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 700;
   color: var(--azul-medio);
-  font-family: var(--fonte-principal);
 }
 
 .info-detalhe .valor {
+  font-size: 0.95rem;
+  font-weight: 600;
   color: var(--cinza-escuro);
-  font-family: var(--fonte-secundaria);
 }
 
+/* Botão de Renovação Estilo "Ação Rápida" */
 .btn-renovar {
-  background-color: var(--verde-esmeralda);
+  background: linear-gradient(135deg, var(--verde-esmeralda), var(--verde-claro));
   color: var(--branco);
   border: none;
-  padding: 12px 24px;
-  border-radius: 6px;
+  padding: 15px;
+  border-radius: 10px;
   cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  margin-top: auto;
+  font-weight: 700;
   font-family: var(--fonte-principal);
   font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(47, 111, 94, 0.2);
 }
 
 .btn-renovar:hover:not(.desabilitado) {
-  background-color: var(--verde-claro);
-  transform: translateY(-2px);
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(47, 111, 94, 0.4);
+  filter: brightness(1.1);
 }
 
 .btn-renovar.desabilitado {
-  background-color: var(--cinza-escuro);
-  opacity: 0.6;
-  cursor: not-allowed;
+  background: var(--cinza-claro);
+  color: var(--cinza-escuro);
+  border: 1px solid #ddd;
+  opacity: 0.7;
+  box-shadow: none;
 }
 
+/* Estado Vazio com Glassmorphism */
 .no-emprestimos {
-  background-color: var(--branco);
-  border-radius: 12px;
-  padding: 60px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 2px dashed rgba(201, 164, 76, 0.3);
+  border-radius: 20px;
+  padding: 80px 20px;
   text-align: center;
-  color: var(--cinza-escuro);
+  color: var(--branco);
 }
 
 .no-emprestimos p {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-family: var(--fonte-secundaria);
+  opacity: 0.8;
+}
+
+/* Badge de Alerta (Opcional - caso o livro esteja atrasado) */
+.badge-atrasado {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #ff4757;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 @media (max-width: 768px) {
-  .renovar-content {
-    padding: 40px 15px;
-  }
-
-  .renovar-header h1 {
-    font-size: 2rem;
-  }
-
-  .emprestimos-grid {
-    grid-template-columns: 1fr;
-  }
+  .renovar-header h1 { font-size: 2.2rem; }
+  .emprestimos-grid { grid-template-columns: 1fr; }
 }

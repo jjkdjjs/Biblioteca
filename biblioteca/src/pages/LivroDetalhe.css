@@ -1,277 +1,257 @@
-/* LivroDetalhe.css */
+/* Reutilizando as variáveis e animações do seu Guia de Estilo */
+:root {
+  --azul-escuro: #1F2A44;
+  --azul-medio: #2E4A7D;
+  --verde-esmeralda: #2F6F5E;
+  --verde-claro: #4C9A85;
+  --dourado: #C9A44C;
+  --dourado-claro: #E5C97A;
+  --branco: #FFFFFF;
+  --cinza-claro: #F2F2F2;
+  --cinza-escuro: #555555;
+  --fonte-principal: 'Poppins', sans-serif;
+  --fonte-secundaria: 'Open Sans', sans-serif;
+}
 
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Container Principal */
 .livro-detalhe-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--azul-claro), var(--azul-medio));
-  padding: 2rem 0;
+  /* Fundo profundo para destacar o card branco */
+  background: radial-gradient(circle at top right, var(--azul-medio), var(--azul-escuro));
+  padding: 4rem 0;
+  font-family: var(--fonte-secundaria);
 }
 
 .livro-detalhe-content {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 2rem;
+  animation: fadeInUp 0.8s ease-out;
 }
 
-.livro-detalhe-header {
-  margin-bottom: 2rem;
-}
-
+/* Botão Voltar Transparente */
 .btn-voltar-detalhes {
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: var(--branco);
-  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--dourado-claro);
+  color: var(--dourado-claro);
+  padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 1rem;
+  font-weight: 600;
   transition: all 0.3s ease;
   text-decoration: none;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2rem;
+  margin-top: 30px;
 }
 
 .btn-voltar-detalhes:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: translateX(-2px);
+  background: var(--dourado);
+  color: var(--azul-escuro);
+  transform: translateX(-5px);
 }
 
+/* Card Principal de Detalhes */
 .livro-detalhe-main {
   display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 3rem;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  padding: 3rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  grid-template-columns: 320px 1fr;
+  gap: 4rem;
+  background: var(--branco);
+  border-radius: 24px;
+  padding: 4rem;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+  border-top: 6px solid var(--dourado);
+  
 }
 
+/* Efeito de brilho sutil no fundo do card */
+.livro-detalhe-main::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(201, 164, 76, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Seção da Capa */
 .livro-capa-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.livro-capa-grande {
-  width: 100%;
-  max-width: 250px;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.favorito-btn-detalhes {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  width: 100%;
-  background: linear-gradient(135deg, var(--cinza-claro), var(--cinza-escuro));
-  color: var(--azul-escuro);
-}
-
-.favorito-btn-detalhes:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.favorito-btn-detalhes.favoritado {
-  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
-  color: white;
-}
-
-.livro-info-section {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-.livro-titulo-autor {
-  border-bottom: 2px solid var(--verde-esmeralda);
-  padding-bottom: 1rem;
+.livro-capa-grande {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.15);
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.livro-capa-grande:hover {
+  transform: scale(1.03) rotate(1deg);
+}
+
+/* Botão Favorito no Detalhe */
+.favorito-btn-detalhes {
+  padding: 14px;
+  border: 2px solid var(--cinza-claro);
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  background: var(--branco);
+  color: var(--cinza-escuro);
+}
+
+.favorito-btn-detalhes.favoritado {
+  background: #fff0f0;
+  border-color: #ff4757;
+  color: #ff4757;
+}
+
+/* Seção de Informações */
+.livro-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
 }
 
 .livro-titulo-autor h1 {
-  font-size: 2.5rem;
+  font-family: var(--fonte-principal);
+  font-size: 3rem;
+  font-weight: 700;
   color: var(--azul-escuro);
-  margin: 0 0 0.5rem 0;
-  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  letter-spacing: -1px;
 }
 
 .livro-titulo-autor h2 {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: var(--verde-esmeralda);
-  margin: 0 0 1rem 0;
-  font-weight: 400;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
 }
 
 .categoria-badge {
-  display: inline-block;
   background: linear-gradient(135deg, var(--verde-esmeralda), var(--verde-claro));
   color: var(--branco);
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
+/* Meta Informações (Ano, Páginas, etc) */
 .livro-detalhes-meta {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
-  background: rgba(74, 106, 165, 0.1);
-  padding: 1.5rem;
-  border-radius: 12px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  background: var(--cinza-claro);
+  padding: 2rem;
+  border-radius: 16px;
 }
 
 .meta-item {
-  font-size: 1rem;
-  color: var(--azul-escuro);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.9rem;
 }
 
 .meta-item strong {
-  color: var(--verde-esmeralda);
-  margin-right: 0.5rem;
+  color: var(--azul-medio);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
 }
 
+/* Resumo/Sinopse */
 .livro-resumo {
-  background: rgba(255, 255, 255, 0.8);
-  padding: 2rem;
-  border-radius: 12px;
   border-left: 4px solid var(--dourado);
+  padding-left: 2rem;
 }
 
 .livro-resumo h3 {
-  font-size: 1.5rem;
+  font-family: var(--fonte-principal);
   color: var(--azul-escuro);
-  margin: 0 0 1rem 0;
-}
-
-.livro-resumo p {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: var(--cinza-escuro);
-  margin: 0;
-}
-
-.livro-acoes {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.btn-reservar-grande,
-.btn-ver-favoritos {
-  padding: 15px 25px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1.1rem;
-  text-align: center;
-  transition: all 0.3s ease;
-  flex: 1;
-  min-width: 200px;
-}
-
-.btn-reservar-grande {
-  background: linear-gradient(135deg, var(--verde-esmeralda), var(--verde-claro));
-  color: var(--branco);
-  box-shadow: 0 5px 15px rgba(47, 111, 94, 0.3);
-}
-
-.btn-reservar-grande:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(47, 111, 94, 0.4);
-}
-
-.btn-ver-favoritos {
-  background: linear-gradient(135deg, var(--azul-medio), var(--azul-escuro));
-  color: var(--branco);
-  box-shadow: 0 5px 15px rgba(47, 74, 125, 0.3);
-}
-
-.btn-ver-favoritos:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(47, 74, 125, 0.4);
-}
-
-.livro-nao-encontrado {
-  text-align: center;
-  padding: 4rem 2rem;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  margin: 2rem 0;
-}
-
-.livro-nao-encontrado h1 {
-  color: var(--azul-escuro);
+  font-size: 1.4rem;
   margin-bottom: 1rem;
 }
 
-.livro-nao-encontrado p {
+.livro-resumo p {
   color: var(--cinza-escuro);
-  margin-bottom: 2rem;
+  line-height: 1.8;
   font-size: 1.1rem;
 }
 
-.btn-voltar {
-  display: inline-block;
-  padding: 12px 24px;
-  background: linear-gradient(135deg, var(--azul-medio), var(--azul-escuro));
-  color: var(--branco);
-  text-decoration: none;
-  border-radius: 12px;
-  font-weight: 600;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Botões de Ação */
+.livro-acoes {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
 }
 
-.btn-voltar:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(47, 74, 125, 0.4);
+.btn-reservar-grande {
+  flex: 2;
+  background: linear-gradient(135deg, var(--verde-esmeralda), var(--verde-claro));
+  color: var(--branco);
+  padding: 18px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(47, 111, 94, 0.2);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-reservar-grande:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px rgba(47, 111, 94, 0.4);
+}
+
+.btn-ver-favoritos {
+  flex: 1;
+  background: var(--azul-escuro);
+  color: var(--dourado-claro);
+  padding: 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-align: center;
+  border: 1px solid var(--dourado);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-ver-favoritos:hover {
+  background: var(--azul-medio);
+  transform: translateY(-4px);
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
-  .livro-detalhe-content {
-    padding: 0 1rem;
-  }
-
+@media (max-width: 992px) {
   .livro-detalhe-main {
     grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 2rem;
+    padding: 2.5rem;
+    gap: 3rem;
   }
-
-  .livro-capa-section {
-    order: -1;
-  }
-
+  
   .livro-capa-grande {
-    max-width: 200px;
+    max-width: 280px;
+    margin: 0 auto;
   }
 
   .livro-titulo-autor h1 {
-    font-size: 2rem;
-  }
-
-  .livro-titulo-autor h2 {
-    font-size: 1.1rem;
-  }
-
-  .livro-detalhes-meta {
-    grid-template-columns: 1fr;
-  }
-
-  .livro-acoes {
-    flex-direction: column;
-  }
-
-  .btn-reservar-grande,
-  .btn-ver-favoritos {
-    min-width: unset;
+    font-size: 2.2rem;
   }
 }

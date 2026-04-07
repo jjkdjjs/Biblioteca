@@ -66,7 +66,7 @@ const books = [
         author: "Holly Jackson",
         image: "https://i.pinimg.com/1200x/16/af/d7/16afd7ec50df7f3e560e5124f6a5811d.jpg",
         avatar: "https://images1.penguinrandomhouse.com/author/2159079",
-        desc: "Pip decide investigar por conta própria um crime que abalou sua cidade há cinco anos, suspeitando que o verdadeiro assassino ainda está solto."
+        desc: "Pip decide investigar por conta própria um crime que abalou sua cidade há cinco anos."
     },
     {
         id: 8,
@@ -75,7 +75,7 @@ const books = [
         author: "Leigh Bardugo",
         image: "https://i.pinimg.com/736x/80/be/59/80be59ecd08839af3fc7d3916e99ce95.jpg",
         avatar: "https://images4.penguinrandomhouse.com/author/2140351",
-        desc: "Em um mundo dividido por uma barreira de escuridão, uma jovem descobre um poder que pode finalmente libertar sua nação."
+        desc: "Uma jovem descobre um poder que pode finalmente libertar sua nação da escuridão."
     },
     {
         id: 9,
@@ -84,7 +84,7 @@ const books = [
         author: "Taylor Jenkins Reid",
         image: "https://i.pinimg.com/736x/0e/f0/dd/0ef0dd82fbbaf3a27d8f7796cf86003f.jpg",
         avatar: "https://m.media-amazon.com/images/S/amzn-author-media-prod/80rvrf599r2ernjs2f4qf8ne70.jpg",
-        desc: "Uma lendária estrela de Hollywood decide contar sua verdadeira história de vida, revelando segredos e amores proibidos."
+        desc: "Uma lendária estrela de Hollywood decide contar sua verdadeira história de vida."
     },
     {
         id: 10,
@@ -93,17 +93,28 @@ const books = [
         author: "Neil Gaiman",
         image: "https://i.pinimg.com/1200x/ac/6a/cc/ac6acca3e94e308e2906b1bdb3e93922.jpg",
         avatar: "https://m.media-amazon.com/images/S/amzn-author-media-prod/3vt82n6mgsk5mqvmf0kbrghn01.jpg",
-        desc: "Ao atravessar uma porta secreta em sua nova casa, Coraline encontra uma versão estranha e perigosa de sua própria vida."
+        desc: "Coraline encontra uma versão estranha e perigosa de sua própria vida atrás de uma porta secreta."
     }
 ];
 
 function Home() {
-    const visibleCount = 5;
+    // ESTADOS
     const [startIndex, setStartIndex] = useState(0);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalType, setModalType] = useState(""); // "participar" ou "agenda"
+    const visibleCount = 5;
 
+    // FUNÇÕES DO MODAL
+    const openModal = (type) => {
+        setModalType(type);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => setIsModalOpen(false);
+
+    // LÓGICA DO SLIDER (CARROSSEL)
     const visibleBooks = (() => {
         if (books.length <= visibleCount) return books;
-
         const endIndex = startIndex + visibleCount;
         return endIndex <= books.length
             ? books.slice(startIndex, endIndex)
@@ -124,133 +135,41 @@ function Home() {
     return (
         <div className="home-wrapper">
             <Header />
-            <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@500;700&display=swap" rel="stylesheet"></link>
+            <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
+
             {/* Banner Principal */}
             <img src="/banner-principal.jpg" alt="Bem-vindo à JDL Biblioteca" className="banner" />
 
             {/* Botões de Ação Rápida */}
             <div className="quick-actions-section">
-                <Link to="/renovar" className="quick-action-btn btn-renew">
-                    Renovar Empréstimo
-                </Link>
-                <Link to="/reservar" className="quick-action-btn btn-reserve">
-                    Reservar Livro
-                </Link>
+                <Link to="/renovar" className="quick-action-btn btn-renew">Renovar Empréstimo</Link>
+                <Link to="/reservar" className="quick-action-btn btn-reserve">Reservar Livro</Link>
             </div>
 
-            {/* Seção de Gêneros */}
+            {/* Seção de Gêneros / Categorias */}
             <div className="generos">
                 <h1 className='titulo-genero'>Categorias de Livros</h1>
 
-                {/* Slider 3D Infinito */}
-                <div
-                    className="slider"
-                    style={{
-                        '--width': '160px',   // Reduzi o tamanho para combinar com suas imagens
-                        '--height': '160px',  // Reduzi a altura
-                        '--quantity': '8',
-                        '--duration': '40s',
-                        maxWidth: '1600px',    // Limita a largura total do carrossel na tela
-                        margin: '0 '      // Centraliza o carrossel na página
-                    }}
-                >
+                <div className="slider" style={{ '--width': '160px', '--height': '160px', '--quantity': '8', '--duration': '40s', maxWidth: '1600px', margin: '0 auto' }}>
                     <div className="list">
-                        {/* Card 1: Fantasia */}
-                        <div className="item" style={{ '--position': 1 }}>
-                            <Link to="/catalogo?categoria=Fantasia" className="card-link">
-                                <div className="card">
-                                    <div className="image_container">
-                                        <img src="/image-fantasia.png" alt="Fantasia" className="image-fantasia" />
-                                    </div>
-                                </div>
-                            </Link>
-                        </div>
-
-                        {/* Card 2: HQ e Manga */}
-                        <div className="item" style={{ '--position': 2 }}>
-                            <Link to="/catalogo?categoria=Mistério" className="card-link">
-                                <div className="card">
-                                    <div className="image_container">
-                                        <img src="/image-hq-manga.png" alt="HQs e Mangás" className="image-fantasia" />
-                                    </div>
-                                </div>
-                            </Link>
-                        </div>
-
-                        {/* Card 3: Amor e Drama */}
-                        <div className="item" style={{ '--position': 3 }}>
-                            <Link to="/catalogo?categoria=Drama" className="card-link">
-                                <div className="card">
-                                    <div className="image_container">
-                                        <img src="/image-amor-drama.png" alt="Amor e Drama" className="image-fantasia" />
-                                    </div>
-                                </div>
-                            </Link>
-                        </div>
-
-                        {/* Card 4: Mistério */}
-                        <div className="item" style={{ '--position': 4 }}>
-                            <Link to="/catalogo?categoria=Mistério" className="card-link">
-                                <div className="card">
-                                    <div className="image_container">
-                                        <img src="/image-misterio-investigacao.png" alt="Mistério" className="image-fantasia" />
-                                    </div>
-                                </div>
-                            </Link>
-                        </div>
-
-                        {/* Card 5: Poesia */}
-                        <div className="item" style={{ '--position': 5 }}>
-                            <Link to="/catalogo?categoria=Poesia" className="card-link">
-                                <div className="card">
-                                    <div className="image_container">
-                                        <img src="/image-poesias-cronicas.png" alt="Poesias" className="image-fantasia" />
-                                    </div>
-                                </div>
-                            </Link>
-                        </div>
-
-                        {/* Card 6: Aventura */}
-                        <div className="item" style={{ '--position': 6 }}>
-                            <Link to="/catalogo?categoria=Aventura" className="card-link">
-                                <div className="card">
-                                    <div className="image_container">
-                                        <img src="/image-aventura.png" alt="Aventura" className="image-fantasia" />
-                                    </div>
-                                </div>
-                            </Link>
-                        </div>
-
-                        {/* Card 7: Literatura Brasileira */}
-                        <div className="item" style={{ '--position': 7 }}>
-                            <Link to="/catalogo?categoria=Literatura Brasileira" className="card-link">
-                                <div className="card">
-                                    <div className="image_container">
-                                        <img src="/image-literaturabrasileira.png" alt="Literatura Brasileira" className="image-fantasia" />
-                                    </div>
-                                </div>
-                            </Link>
-                        </div>
-
-                        {/* Card 8: Biografia */}
-                        <div className="item" style={{ '--position': 8 }}>
-                            <Link to="/catalogo?categoria=Biografia" className="card-link">
-                                <div className="card">
-                                    <div className="image_container">
-                                        <img src="/image-biografias.png" alt="Biografia" className="image-fantasia" />
-                                    </div>
-                                </div>
-                            </Link>
-                        </div>
+                        <div className="item" style={{ '--position': 1 }}><Link to="/catalogo?categoria=Fantasia"><div className="card"><div className="image_container"><img src="/image-fantasia.png" alt="Fantasia" className="image-fantasia" /></div></div></Link></div>
+                        <div className="item" style={{ '--position': 2 }}><Link to="/catalogo?categoria=HQs"><div className="card"><div className="image_container"><img src="/image-hq-manga.png" alt="HQs" className="image-fantasia" /></div></div></Link></div>
+                        <div className="item" style={{ '--position': 3 }}><Link to="/catalogo?categoria=Drama"><div className="card"><div className="image_container"><img src="/image-amor-drama.png" alt="Drama" className="image-fantasia" /></div></div></Link></div>
+                        <div className="item" style={{ '--position': 4 }}><Link to="/catalogo?categoria=Mistério"><div className="card"><div className="image_container"><img src="/image-misterio-investigacao.png" alt="Mistério" className="image-fantasia" /></div></div></Link></div>
+                        <div className="item" style={{ '--position': 5 }}><Link to="/catalogo?categoria=Poesia"><div className="card"><div className="image_container"><img src="/image-poesias-cronicas.png" alt="Poesia" className="image-fantasia" /></div></div></Link></div>
+                        <div className="item" style={{ '--position': 6 }}><Link to="/catalogo?categoria=Aventura"><div className="card"><div className="image_container"><img src="/image-aventura.png" alt="Aventura" className="image-fantasia" /></div></div></Link></div>
+                        <div className="item" style={{ '--position': 7 }}><Link to="/catalogo?categoria=Literatura"><div className="card"><div className="image_container"><img src="/image-literaturabrasileira.png" alt="Literatura" className="image-fantasia" /></div></div></Link></div>
+                        <div className="item" style={{ '--position': 8 }}><Link to="/catalogo?categoria=Biografia"><div className="card"><div className="image_container"><img src="/image-biografias.png" alt="Biografia" className="image-fantasia" /></div></div></Link></div>
                     </div>
                 </div>
 
+                {/* Livros em Destaque */}
                 <div className="showcase-container">
                     <div className="showcase-header">
                         <h2>Livros em Destaque</h2>
                         <div className="nav-buttons">
-                            <button type="button" aria-label="Livros anteriores" onClick={handlePrev}>❮</button>
-                            <button type="button" aria-label="Próximos livros" onClick={handleNext}>❯</button>
+                            <button type="button" onClick={handlePrev}>❮</button>
+                            <button type="button" onClick={handleNext}>❯</button>
                         </div>
                     </div>
 
@@ -258,13 +177,9 @@ function Home() {
                         {visibleBooks.map((book) => (
                             <div key={book.id} className="book-card">
                                 <img src={book.image} alt={book.title} className="book-cover" />
-
                                 <div className="book-info">
                                     <h3>{book.title}</h3>
-                                    <p className="book-description">
-                                        {book.desc}
-                                    </p>
-
+                                    <p className="book-description">{book.desc}</p>
                                     <div className="author-section">
                                         <img src={book.avatar} alt={book.author} className="author-avatar" />
                                         <div className="author-text">
@@ -274,76 +189,86 @@ function Home() {
                                     </div>
                                 </div>
                             </div>
-
                         ))}
                     </div>
                 </div>
 
+                {/* Seção de Regras */}
                 <div className="library-info-section">
                     <div className="library-info-header">
                         <h2>Regras e Serviços da Biblioteca</h2>
-                        <p>Fique por dentro das regras de empréstimo, valores e benefícios para alunos e professores</p>
+                        <p>Fique por dentro das regras de empréstimo e benefícios</p>
                     </div>
                     <div className="library-info-grid">
                         <div className="library-info-card">
                             <h3>Limite de Empréstimo</h3>
-                            <p>Cada aluno pode levar até 3 livros por vez. Se precisar, é possível renovar enquanto não houver reserva.</p>
+                            <p>Até 3 livros por vez. Renovação disponível se não houver reserva.</p>
                         </div>
                         <div className="library-info-card">
                             <h3>Valor da Diária</h3>
-                            <p>A multa é R$ 0,25 por livro por dia de atraso. Entregue no prazo para manter a conta em dia.</p>
+                            <p>Multa de R$ 0,25 por dia de atraso. Mantenha suas leituras em dia!</p>
                         </div>
                         <div className="library-info-card">
                             <h3>Tempo de Empréstimo</h3>
-                            <p>O período padrão é de 14 dias. Depois disso, você pode renovar por mais 7 dias se o livro não estiver reservado.</p>
+                            <p>Prazo de 14 dias, renovável por mais 7 dias.</p>
                         </div>
                         <div className="library-info-card">
                             <h3>Serviços Extras</h3>
-                            <p>Fazemos empréstimo de livros, reserva online, indicação de leitura e espaço para estudo com Wi-Fi.</p>
+                            <p>Reserva online, Wi-Fi liberado e espaço para estudos em grupo.</p>
                         </div>
                     </div>
                 </div>
+
+                {/* Clube do Livro */}
                 <section className="clube-livro-section">
                     <div className="clube-livro-container">
-
-                        {/* Imagem com detalhe decorativo */}
                         <div className="clube-livro-image-area">
                             <div className="decorator-box"></div>
-                            <img
-                                src="https://scontent-gru2-1.xx.fbcdn.net/v/t51.82787-15/568882018_18489359881073081_7081161621605463211_n.webp?stp=dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=13d280&_nc_ohc=wNo_xNs0llYQ7kNvwHMTsM5&_nc_oc=AdrJilPb3zUw0KI1NuJ6_D-ihwJi1krpvR3jxZJAN88CAZtHY-AvERraX5ZcsIsWKaw&_nc_zt=23&_nc_ht=scontent-gru2-1.xx&_nc_gid=Qgp2ozCSQ5wH1342U2PkyA&_nc_ss=7a389&oh=00_AfxabVlh-xruSjHNoetUpPE0GMU9T-veB3DvbhWtEvDzLA&oe=69D049EA"
-                                alt="Integrantes do Clube do Livro"
-                                className="clube-livro-img"
-                            />
+                            <img src="https://scontent-gru2-1.xx.fbcdn.net/v/t51.82787-15/568882018_18489359881073081_7081161621605463211_n.webp?stp=dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=13d280&_nc_ohc=-eeG9vz-03sQ7kNvwGDUgGt&_nc_oc=AdoRJBjyWL0OsI1gwMg-WmIBG6ktbJ4-SJx1zv8Imsbl5KN0GUAI7yodEOy77lukRAQ&_nc_zt=23&_nc_ht=scontent-gru2-1.xx&_nc_gid=GymyV_0ccvq0n6MX4xYYYQ&_nc_ss=7a389&oh=00_Af2AuAiscdTsqObpnmtRYJZjLk64vjWh1aM06D9Un4166A&oe=69DA9DAA" alt="Clube" className="clube-livro-img" />
                         </div>
-
-                        {/* Conteúdo de Texto */}
                         <div className="clube-livro-content">
-                            <h2 className="clube-livro-title">
-                                Faça parte do nosso <br />
-                                <span className="clube-livro-highlight">Clube do Livro</span>
-                            </h2>
-
-                            <p className="clube-livro-text">
-                                Compartilhe ideias, descubra novas perspectivas e conecte-se com outros leitores apaixonados. Nossos encontros semanais são o lugar perfeito para quem busca mergulhar fundo na literatura.
-                            </p>
-
+                            <h2 className="clube-livro-title">Faça parte do nosso <br /><span className="clube-livro-highlight">Clube do Livro</span></h2>
+                            <p className="clube-livro-text">Conecte-se com outros leitores apaixonados. Nossos encontros são semanais!</p>
                             <div className="clube-livro-actions">
-                                <a href="/" className="btn-clube-primary">Participar Agora</a>
-                                <a href="/" className="btn-clube-outline">Ver Próximas Leituras</a>
+                                <button onClick={() => openModal("participar")} className="btn-clube-primary">Participar Agora</button>
+                                <button onClick={() => openModal("agenda")} className="btn-clube-outline">Ver Próximas Leituras</button>
                             </div>
-
-                            <div className="clube-livro-footer">
-                                <span className="dot-active"></span>
-                                Encontros: Terças e Sextas, às 19h
-                            </div>
+                            <div className="clube-livro-footer"><span className="dot-active"></span> Terças e Sextas, às 19h</div>
                         </div>
-
                     </div>
                 </section>
             </div>
+
+            {/* MODAL (Só aparece se isModalOpen for true) */}
+            {isModalOpen && (
+                <div className="modal-overlay" onClick={closeModal}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <button className="close-button" onClick={closeModal}>&times;</button>
+                        <h2>{modalType === "participar" ? "Inscrição Clube do Livro" : "Agenda de Leituras"}</h2>
+                        <p>Deixe seu contato para enviarmos tudo por e-mail!</p>
+
+                        <form action="https://api.staticforms.xyz/submit" method="post">
+                            {/* SUBSTITUA PELA SUA CHAVE ABAIXO */}
+                            <input type="hidden" name="accessKey" value="sf_4156f109abaca6a3b983318b" />
+                            <input type="hidden" name="subject" value={`Interesse: ${modalType}`} />
+
+                            <div className="input-group">
+                                <label>Nome</label>
+                                <input type="text" name="name" required placeholder="Seu nome..." />
+                            </div>
+                            <div className="input-group">
+                                <label>E-mail</label>
+                                <input type="email" name="email" required placeholder="seu@email.com" />
+                            </div>
+
+                            <button type="submit" className="btn-submit-modal">Enviar Dados</button>
+                        </form>
+                    </div>
+                </div>
+            )}
+
             <Footer />
         </div>
-
     );
 }
 
