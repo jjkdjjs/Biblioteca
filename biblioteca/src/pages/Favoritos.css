@@ -95,13 +95,13 @@
 
 .livro-card img {
   width: 100%;
-  height: 320px;
+  height: 490px;
   object-fit: cover;
-  transition: transform 1s var(--transition-premium);
+  transition: transform 0.3s ease-in-out;
 }
 
 .livro-card:hover img {
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
 
 .livro-info {
@@ -110,6 +110,7 @@
   display: flex;
   flex-direction: column;
   background: linear-gradient(to bottom, #ffffff, #f9fafb);
+  
 }
 
 .livro-info h3 {
@@ -154,6 +155,7 @@
   text-transform: uppercase;
   transition: var(--transition-premium);
   text-align: center;
+  text-decoration: none;
 }
 
 .detalhes-btn {

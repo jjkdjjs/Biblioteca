@@ -1,162 +1,113 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { usePerfil } from '../contexts/PerfilContext';
 import './Login.css';
 
 export default function Login() {
-  const navigate = useNavigate();
-  const { fotoPerfil, atualizarFotoPerfil } = usePerfil(); // Se houver função de limpar perfil no contexto, use aqui
-  const fileInputRef = useRef(null);
-
-  const [usuario, setUsuario] = useState('');
+  const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [erro, setErro] = useState('');
-  const [sucesso, setSucesso] = useState('');
+  const { login, usuarioLogado, logout } = usePerfil();
+  const navigate = useNavigate();
 
-  // FUNÇÃO PARA SAIR DA CONTA
-  const handleLogout = () => {
-    // Se você estiver usando localStorage:
-    // localStorage.removeItem('token'); 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    
+    // 1. Busca o banco de dados de usuários cadastrados
+    const usuarios = JSON.parse(localStorage.getItem('usuarios_db') || '[]');
+    
+    // 2. Procura o usuário que combine Email e Senha
+    const user = usuarios.find(u => u.email === email && u.senha === senha);
 
-    setSucesso('Saindo da conta...');
-    setTimeout(() => {
-      navigate('/'); // Redireciona para a Home
-    }, 1000);
-  };
-
-  const handleFotoChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      // Validações
-      if (!file.type.startsWith('image/')) {
-        setErro('Por favor, selecione apenas arquivos de imagem.');
-        return;
-      }
-
-      if (file.size > 5 * 1024 * 1024) { // 5MB
-        setErro('A imagem deve ter no máximo 5MB.');
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        atualizarFotoPerfil(e.target.result);
-        setErro('');
-        setSucesso('Foto de perfil atualizada com sucesso!');
-        setTimeout(() => setSucesso(''), 3000);
-      };
-      reader.readAsDataURL(file);
+    if (user) {
+      // 3. Salva na sessão ativa do LocalStorage
+      localStorage.setItem('usuarioLogado', JSON.stringify(user));
+      
+      // 4. Atualiza o Contexto Global (PerfilContext)
+      login(user);
+      
+      // 5. O "Pulo do Gato": Dispara o evento para o Header atualizar a foto na hora
+      window.dispatchEvent(new Event('storageUpdate'));
+      
+      // 6. Redireciona para a Home ou Perfil
+      navigate('/'); 
+    } else {
+      alert('E-mail ou senha incorretos!');
     }
   };
 
-  const handleAvatarClick = () => {
-    fileInputRef.current?.click();
-  };
-
-  const handleLogin = () => {
-    setErro('');
-    setSucesso('');
-
-    if (!usuario || !senha) {
-      setErro('Preencha usuário e senha.');
-      return;
-    }
-
-    // Lógica de autenticação 
-    setSucesso('Login realizado com sucesso!');
-    setTimeout(() => navigate('/'), 1500);
-  };
+  // Se o usuário já estiver logado, exibe esta tela amigável
+  if (usuarioLogado) {
+    return (
+      <div className="auth-container">
+        <div className="auth-card" style={{ textAlign: 'center', padding: '40px' }}>
+          <h2>Você já está logado!</h2>
+          <p>Olá, <strong>{usuarioLogado.nome}</strong></p>
+          
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '25px' }}>
+            <button className="btn-primary" onClick={() => navigate('/')}>
+              Ir para Início
+            </button>
+            
+            <button 
+              className="btn-primary" 
+              style={{ backgroundColor: '#2E4A7D' }} 
+              onClick={() => navigate('/perfil')}
+            >
+              Ver meu Perfil
+            </button>
+            
+            <button 
+              className="btn-back" 
+              onClick={() => {
+                logout();
+                localStorage.removeItem('usuarioLogado');
+                window.dispatchEvent(new Event('storageUpdate'));
+              }} 
+              style={{ width: '100%', border: '1px solid #ccc', background: 'none', marginTop: '10px' }}
+            >
+              Sair da Conta
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="auth-container">
       <div className="auth-card">
-        <div className="auth-header">
-          <button type="button" className="btn-back" onClick={() => navigate(-1)}>
-            ← Voltar
-          </button>
-
-          {/* NOVO BOTÃO DE SAIR */}
-          <button type="button" className="btn-logout" onClick={handleLogout}>
-            Sair da Conta
-          </button>
-        </div>
-
-        <div className="auth-form-section">
-          <div className="auth-title-section">
-            <h1 className="auth-title">Bem-vindo de Volta</h1>
-            <p className="auth-subtitle">Entre na sua conta para continuar</p>
-          </div>
-
-          <div className="profile-upload-section">
-            <div className="profile-avatar" onClick={handleAvatarClick}>
-              <img
-                src={fotoPerfil || '/perfil1.png'}
-                alt="Foto de perfil"
-                className="avatar-image"
-              />
-              <div className="avatar-overlay">
-                <span className="upload-text">Alterar Foto</span>
-              </div>
-            </div>
-            <p className="upload-hint">
-              Clique na foto para alterar sua imagem de perfil
-            </p>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              onChange={handleFotoChange}
-              style={{ display: 'none' }}
-            />
-          </div>
-
-          {erro && <div className="alert alert-error">{erro}</div>}
-          {sucesso && <div className="alert alert-success">{sucesso}</div>}
-
-          <form className="auth-form" onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
+        <div className="auth-content">
+          <h1>Login</h1>
+          <form className="auth-form" onSubmit={handleLogin}>
             <div className="input-group">
-              <label className="input-label" htmlFor="usuario">Usuário ou Email</label>
-              <input
-                id="usuario"
-                type="text"
-                className="input-field"
-                placeholder="Digite seu usuário ou email"
-                value={usuario}
-                onChange={(e) => setUsuario(e.target.value)}
+              <label className="input-label">E-mail</label>
+              <input 
+                className="input-field" 
+                type="email" 
+                placeholder="seu@email.com"
+                onChange={e => setEmail(e.target.value)} 
+                required 
               />
             </div>
-
-            <div className="input-group">
-              <label className="input-label" htmlFor="senha">Senha</label>
-              <input
-                id="senha"
-                type="password"
-                className="input-field"
-                placeholder="Digite sua senha"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
+            
+            <div className="input-group" style={{ marginTop: '1.5rem' }}>
+              <label className="input-label">Senha</label>
+              <input 
+                className="input-field" 
+                type="password" 
+                placeholder="••••••••"
+                onChange={e => setSenha(e.target.value)} 
+                required 
               />
             </div>
-
-            <div className="form-row">
-              <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem', color: 'var(--cinza-escuro)' }}>
-                <input type="checkbox" style={{ margin: 0 }} />
-                Lembrar de mim
-              </label>
-            </div>
-
-            <button type="submit" className="btn-primary">
-              Entrar na Conta
+            
+            <button className="btn-primary" type="submit" style={{ marginTop: '2rem' }}>
+              Entrar
             </button>
           </form>
-
+          
           <div className="auth-footer">
-            <p style={{ margin: 0, color: 'var(--cinza-escuro)' }}>
-              Não tem uma conta?{' '}
-              <Link to="/Cadastro" className="auth-link">
-                Criar conta
-              </Link>
-            </p>
+            <p>Novo por aqui? <Link to="/Cadastro" className="auth-link">Crie uma conta</Link></p>
           </div>
         </div>
       </div>

@@ -1,60 +1,36 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
 
 const FavoritosContext = createContext();
 
-export const useFavoritos = () => {
-  const context = useContext(FavoritosContext);
-  if (!context) {
-    throw new Error('useFavoritos deve ser usado dentro de um FavoritosProvider');
-  }
-  return context;
-};
+export function FavoritosProvider({ children }) {
+  // Inicia o estado já tentando ler o que está salvo no navegador
+  const [favoritos, setFavoritos] = useState(() => {
+    const salvos = localStorage.getItem('meusFavoritos');
+    return salvos ? JSON.parse(salvos) : [];
+  });
 
-export const FavoritosProvider = ({ children }) => {
-  const [favoritos, setFavoritos] = useState([]);
-
-  // Carregar favoritos do localStorage ao inicializar
+  // Toda vez que a lista de favoritos mudar, salva no localStorage
   useEffect(() => {
-    const favoritosSalvos = localStorage.getItem('favoritos');
-    if (favoritosSalvos) {
-      setFavoritos(JSON.parse(favoritosSalvos));
-    }
-  }, []);
-
-  // Salvar favoritos no localStorage sempre que mudar
-  useEffect(() => {
-    localStorage.setItem('favoritos', JSON.stringify(favoritos));
+    localStorage.setItem('meusFavoritos', JSON.stringify(favoritos));
   }, [favoritos]);
 
   const adicionarFavorito = (livro) => {
-    setFavoritos(prev => {
-      const jaExiste = prev.find(fav => fav.id === livro.id);
-      if (jaExiste) {
-        return prev.filter(fav => fav.id !== livro.id);
-      } else {
-        return [...prev, livro];
-      }
-    });
+    if (!favoritos.find(f => f.id === livro.id)) {
+      setFavoritos([...favoritos, livro]);
+    }
   };
 
-  const removerFavorito = (livroId) => {
-    setFavoritos(prev => prev.filter(fav => fav.id !== livroId));
+  const removerFavorito = (id) => {
+    setFavoritos(favoritos.filter(f => f.id !== id));
   };
 
-  const isFavorito = (livroId) => {
-    return favoritos.some(fav => fav.id === livroId);
-  };
-
-  const value = {
-    favoritos,
-    adicionarFavorito,
-    removerFavorito,
-    isFavorito
-  };
+  const isFavorito = (id) => favoritos.some(f => f.id === id);
 
   return (
-    <FavoritosContext.Provider value={value}>
+    <FavoritosContext.Provider value={{ favoritos, adicionarFavorito, removerFavorito, isFavorito }}>
       {children}
     </FavoritosContext.Provider>
   );
-};
+}
+
+export const useFavoritos = () => useContext(FavoritosContext);

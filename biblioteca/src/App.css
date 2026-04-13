@@ -1,0 +1,21 @@
+:root {
+  --azul-escuro: #1F2A44;
+  --azul-medio: #2E4A7D;
+  --verde-esmeralda: #2F6F5E;
+  --verde-claro: #4C9A85;
+  --dourado: #C9A44C;
+  --branco: #FFFFFF;
+  --cinza-claro: #F2F2F2;
+  --sombra: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}

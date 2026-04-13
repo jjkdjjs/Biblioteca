@@ -41,6 +41,7 @@ body {
 .auth-card {
   width: 100%;
   max-width: 450px;
+  padding: 50px;
   background: var(--branco);
   border-radius: 20px;
   box-shadow: var(--sombra);
