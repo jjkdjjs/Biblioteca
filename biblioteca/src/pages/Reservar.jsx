@@ -129,7 +129,7 @@ function Reservar() {
                 <div className="regra-header"><strong>Regras de Retirada</strong></div>
                 <ul>
                   <li>Retirada em até <strong>48 horas</strong>.</li>
-                  <li>Local: <strong>Biblioteca Central</strong>.</li>
+                  <li>Local: <strong>Biblioteca Osvaldo Cruz</strong>.</li>
                   <li>Apresente sua carteirinha.</li>
                 </ul>
               </div>
