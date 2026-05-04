@@ -1,0 +1,201 @@
+.header-container {
+    width: 100%;
+    background-color: #ffffff; /* Fundo branco limpo */
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); /* Sombra suave */
+    position: relative;
+    top: 0;
+    z-index: 1000;
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+/* 2. Logo */
+.logo-box .logo-img {
+    height: 55px; /* Tamanho equilibrado */
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo-box:hover .logo-img {
+    transform: scale(1.05);
+}
+
+/* 3. Menu de Navegação */
+.nav-menu {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: #4a5568; /* Cinza elegante */
+    font-size: 0.95rem;
+    font-weight: 500;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+    color: #C9A44C; /* Cor Dourada do seu projeto */
+}
+
+/* Linha animada embaixo dos links */
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #C9A44C;
+    transition: width 0.3s ease;
+}
+
+.nav-item:hover::after {
+    width: 100%;
+}
+
+/* 4. Barra de Busca Moderna */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f7fafc;
+    border: 1px solid #edf2f7;
+    border-radius: 50px; /* Bordas arredondadas (pílula) */
+    padding: 6px 18px;
+    width: 280px;
+    transition: all 0.3s ease;
+}
+
+.search-bar:focus-within {
+    background-color: #ffffff;
+    border-color: #C9A44C;
+    box-shadow: 0 0 0 3px rgba(201, 164, 76, 0.1);
+    width: 320px; /* Expande levemente ao clicar */
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 0.9rem;
+    color: #2d3748;
+    width: 100%;
+}
+
+.search-icon {
+    background: none;
+    border: none;
+    color: #a0aec0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s;
+}
+
+.search-bar:focus-within .search-icon {
+    color: #C9A44C;
+}
+
+/* 5. Seção de Usuário e Perfil */
+.profile-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.avatar-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.user-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #edf2f7;
+    transition: border-color 0.3s ease;
+}
+
+.avatar-wrapper:hover .user-avatar {
+    border-color: #C9A44C;
+}
+
+/* Bolinha de Multa */
+.fine-indicator {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 12px;
+    height: 12px;
+    background-color: #e53e3e; /* Vermelho alerta */
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(229, 62, 62, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(229, 62, 62, 0); }
+}
+
+/* 6. Botões (Sair e Entrar) */
+.logout-button {
+    background-color: transparent;
+    color: #718096;
+    border: 1px solid #e2e8f0;
+    padding: 6px 15px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #fff5f5;
+    color: #c53030;
+    border-color: #feb2b2;
+}
+
+.login-button {
+    text-decoration: none;
+    background: linear-gradient(135deg, #C9A44C, #E5C97A);
+    color: #ffffff;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(201, 164, 76, 0.2);
+    transition: all 0.3s ease;
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(201, 164, 76, 0.3);
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .nav-menu { gap: 15px; }
+    .search-bar { width: 200px; }
+    .search-bar:focus-within { width: 220px; }
+}
+
+@media (max-width: 768px) {
+    .nav-menu { display: none; } /* Oculta menu em telas pequenas - ideal usar menu hambúrguer */
+    .header-content { padding: 0 15px; }
+}
