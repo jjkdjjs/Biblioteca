@@ -8,9 +8,9 @@ const FOOTER_CONFIG = {
     descricao: "Promovendo o acesso ao conhecimento e incentivando a leitura para todos da Escola Osvaldo Cruz.",
   },
   links: [
-    { label: "Catálogo", href: "/catalogo" },
-    { label: "Meus Livros", href: "/meuslivros" },
-    { label: "Favoritos", href: "/favoritos" },
+    { label: "Catálogo", href:"/Catalogo" },
+    { label: "Meus Livros", href:"/meus-livros" },
+    { label: "Favoritos", href:"/Favoritos" },
   ],
   contato: {
     endereco: "R. Carlos Moser, 91 - Centro, Rodeio - SC, 89136-000",

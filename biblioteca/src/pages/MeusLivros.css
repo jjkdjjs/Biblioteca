@@ -26,6 +26,46 @@
   padding: 4rem 0;
 }
 
+.meus-livros-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.meus-livros-intro h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin: 0;
+  color: var(--branco);
+}
+
+.meus-livros-intro p {
+  margin: 0.5rem 0 0;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 680px;
+}
+
+.resumo-topo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.resumo-topo span {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--branco);
+}
+
+.resumo-topo small {
+  color: rgba(255, 255, 255, 0.6);
+}
+
 .page-header {
   text-align: center;
   margin-bottom: 4rem;
@@ -106,6 +146,7 @@
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 30px;
   animation: fadeIn 0.5s ease-in-out;
+  padding: 30px;
 }
 
 @keyframes fadeIn {

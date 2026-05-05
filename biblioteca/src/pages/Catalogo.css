@@ -103,6 +103,27 @@
   box-shadow: 0 0 15px rgba(76, 154, 133, 0.3);
 }
 
+.search-input {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--branco);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--verde-claro);
+  box-shadow: 0 0 15px rgba(76, 154, 133, 0.3);
+}
+
 .livros-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));

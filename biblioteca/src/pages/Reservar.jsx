@@ -84,7 +84,7 @@ function Reservar() {
                     onClick={() => toggleReserva(livro)}
                   >
                     <div className="livro-image-wrapper">
-                      <img src={livro.imagem} alt={livro.titulo} className="livro-image" />
+                      <img src={livro.capa} alt={livro.titulo} className="livro-image" />
                       <div className="overlay-selection">
                         <span className="check-icon">✓</span>
                       </div>
