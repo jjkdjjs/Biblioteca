@@ -45,7 +45,14 @@ function Reservar() {
 
   const finalizar = () => {
     if (reservados.length === 0) return alert("Selecione pelo menos um livro!");
-    localStorage.setItem('minhasReservas', JSON.stringify(reservados));
+    const reservasExistentes = JSON.parse(localStorage.getItem('minhasReservas') || '[]');
+    const novasReservas = [...reservasExistentes];
+    reservados.forEach(livro => {
+      if (!novasReservas.find(r => r.id === livro.id)) {
+        novasReservas.push(livro);
+      }
+    });
+    localStorage.setItem('minhasReservas', JSON.stringify(novasReservas));
     alert("Reserva solicitada com sucesso!");
     navigate('/meus-livros');
   };
@@ -135,7 +142,7 @@ function Reservar() {
               </div>
 
               <div className="alerta-atencao">
-                <p>⚠️ Cancelamentos de livros já retirados devem ser feitos presencialmente.</p>
+                <p>Cancelamentos de livros já retirados devem ser feitos presencialmente.</p>
               </div>
 
               <button className="btn-confirmar" onClick={finalizar} disabled={reservados.length === 0}>

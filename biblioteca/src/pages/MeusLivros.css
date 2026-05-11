@@ -1,4 +1,4 @@
-/* Variáveis mantidas para consistência */
+
 :root {
   --azul-escuro: #1F2A44;
   --azul-medio: #2E4A7D;
@@ -207,6 +207,22 @@
   margin: 0;
   color: var(--branco);
   font-weight: 600;
+}
+
+.btn-cancelar {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--vermelho);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+.btn-cancelar:hover {
+  background: #b71c1c;
 }
 
 .autor {

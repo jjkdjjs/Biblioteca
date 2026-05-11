@@ -1,7 +1,7 @@
 .header-container {
     width: 100%;
-    background-color: #ffffff; /* Fundo branco limpo */
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); /* Sombra suave */
+    background-color: #ffffff;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); 
     position: relative;
     top: 0;
     z-index: 1000;
@@ -18,9 +18,8 @@
     padding: 0 30px;
 }
 
-/* 2. Logo */
 .logo-box .logo-img {
-    height: 55px; /* Tamanho equilibrado */
+    height: 55px; 
     width: auto;
     transition: transform 0.3s ease;
 }
@@ -29,7 +28,6 @@
     transform: scale(1.05);
 }
 
-/* 3. Menu de Navegação */
 .nav-menu {
     display: flex;
     gap: 30px;
@@ -37,7 +35,7 @@
 
 .nav-item {
     text-decoration: none;
-    color: #4a5568; /* Cinza elegante */
+    color: #4a5568; 
     font-size: 0.95rem;
     font-weight: 500;
     position: relative;
@@ -46,10 +44,9 @@
 }
 
 .nav-item:hover {
-    color: #C9A44C; /* Cor Dourada do seu projeto */
+    color: #C9A44C; 
 }
 
-/* Linha animada embaixo dos links */
 .nav-item::after {
     content: '';
     position: absolute;
@@ -65,13 +62,12 @@
     width: 100%;
 }
 
-/* 4. Barra de Busca Moderna */
 .search-bar {
     display: flex;
     align-items: center;
     background-color: #f7fafc;
     border: 1px solid #edf2f7;
-    border-radius: 50px; /* Bordas arredondadas (pílula) */
+    border-radius: 50px;
     padding: 6px 18px;
     width: 280px;
     transition: all 0.3s ease;
@@ -81,7 +77,7 @@
     background-color: #ffffff;
     border-color: #C9A44C;
     box-shadow: 0 0 0 3px rgba(201, 164, 76, 0.1);
-    width: 320px; /* Expande levemente ao clicar */
+    width: 320px;
 }
 
 .search-bar input {
@@ -107,7 +103,6 @@
     color: #C9A44C;
 }
 
-/* 5. Seção de Usuário e Perfil */
 .profile-group {
     display: flex;
     align-items: center;
@@ -133,14 +128,13 @@
     border-color: #C9A44C;
 }
 
-/* Bolinha de Multa */
 .fine-indicator {
     position: absolute;
     top: -2px;
     right: -2px;
     width: 12px;
     height: 12px;
-    background-color: #e53e3e; /* Vermelho alerta */
+    background-color: #e53e3e; 
     border: 2px solid #ffffff;
     border-radius: 50%;
     animation: pulse 2s infinite;
@@ -152,7 +146,6 @@
     100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(229, 62, 62, 0); }
 }
 
-/* 6. Botões (Sair e Entrar) */
 .logout-button {
     background-color: transparent;
     color: #718096;
@@ -188,7 +181,6 @@
     box-shadow: 0 6px 15px rgba(201, 164, 76, 0.3);
 }
 
-/* Responsividade */
 @media (max-width: 1024px) {
     .nav-menu { gap: 15px; }
     .search-bar { width: 200px; }
@@ -196,6 +188,6 @@
 }
 
 @media (max-width: 768px) {
-    .nav-menu { display: none; } /* Oculta menu em telas pequenas - ideal usar menu hambúrguer */
+    .nav-menu { display: none; } 
     .header-content { padding: 0 15px; }
 }

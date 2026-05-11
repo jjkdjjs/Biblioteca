@@ -3,13 +3,11 @@ import { createContext, useState, useContext, useEffect } from 'react';
 const FavoritosContext = createContext();
 
 export function FavoritosProvider({ children }) {
-  // Inicia o estado já tentando ler o que está salvo no navegador
   const [favoritos, setFavoritos] = useState(() => {
     const salvos = localStorage.getItem('meusFavoritos');
     return salvos ? JSON.parse(salvos) : [];
   });
 
-  // Toda vez que a lista de favoritos mudar, salva no localStorage
   useEffect(() => {
     localStorage.setItem('meusFavoritos', JSON.stringify(favoritos));
   }, [favoritos]);

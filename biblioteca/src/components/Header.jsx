@@ -9,21 +9,18 @@ function Header() {
     const navigate = useNavigate();
     const { usuarioLogado, logout } = usePerfil();
 
-    // 1. Hook para carregar a foto do LocalStorage e atualizar via evento
     useEffect(() => {
         const atualizarInterface = () => {
             const dados = JSON.parse(localStorage.getItem('usuarioLogado'));
             if (dados) {
-                // Tenta pegar 'foto' (do cadastro) ou 'fotoPerfil' (do upload no perfil)
                 setFoto(dados.foto || dados.fotoPerfil || '/perfil1.png');
             }
         };
 
         atualizarInterface();
 
-        // Escuta atualizações do Perfil e do Login
         window.addEventListener('storageUpdate', atualizarInterface);
-        window.addEventListener('storage', atualizarInterface); // Atualiza entre abas
+        window.addEventListener('storage', atualizarInterface);
 
         return () => {
             window.removeEventListener('storageUpdate', atualizarInterface);
@@ -43,12 +40,10 @@ function Header() {
     return (
         <header className="header-container">
             <div className="header-content">
-                {/* Logo */}
                 <Link to="/" className="logo-box">
                     <img src="/logo.png" alt="Logo JDL" className="logo-img" />
                 </Link>
 
-                {/* Navegação Central */}
                 <nav className="nav-menu">
                     <Link to="/" className="nav-item">Início</Link>
                     <Link to="/catalogo" className="nav-item">Catálogo</Link>
@@ -56,7 +51,6 @@ function Header() {
                     <Link to="/favoritos" className="nav-item">Favoritos</Link>
                 </nav>
 
-                {/* Barra de Busca */}
                 <form className="search-bar" onSubmit={aoPesquisar}>
                     <input
                         type="text"
@@ -72,9 +66,7 @@ function Header() {
                     </button>
                 </form>
 
-                {/* Seção do Usuário */}
                 <div className="user-section">
-                    {/* Aqui verificamos o usuarioLogado do Context para saber se exibe a foto ou o botão Entrar */}
                     {usuarioLogado ? (
                         <div className="profile-group">
                             <div className="avatar-wrapper">

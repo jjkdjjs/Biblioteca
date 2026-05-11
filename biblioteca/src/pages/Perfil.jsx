@@ -24,26 +24,32 @@ export default function Perfil() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      if (file.size > 500000) {
+        alert("A imagem é muito grande! Escolha uma foto de até 500KB.");
+        return;
+      }
+
       const reader = new FileReader();
       reader.onloadend = () => {
-        setTempUser({ ...tempUser, foto: reader.result }); // Usando 'foto' como no seu Cadastro
+        setTempUser({ ...tempUser, foto: reader.result });
       };
       reader.readAsDataURL(file);
     }
   };
 
   const handleSave = () => {
-    // 1. Atualiza a sessão
-    localStorage.setItem('usuarioLogado', JSON.stringify(tempUser));
-    
-    // 2. Atualiza o banco de usuários (usuarios_db)
-    const usuariosDB = JSON.parse(localStorage.getItem('usuarios_db') || '[]');
-    const novosUsuarios = usuariosDB.map(u => u.email === user.email ? tempUser : u);
-    localStorage.setItem('usuarios_db', JSON.stringify(novosUsuarios));
-
-    setUser(tempUser);
-    window.dispatchEvent(new Event('storageUpdate')); // Faz o Header atualizar a foto
-    setIsEditing(false);
+    try {
+      localStorage.setItem('usuarioLogado', JSON.stringify(tempUser));
+      const usuariosDB = JSON.parse(localStorage.getItem('usuarios_db') || '[]');
+      const novosUsuarios = usuariosDB.map(u => u.email === user.email ? tempUser : u);
+      localStorage.setItem('usuarios_db', JSON.stringify(novosUsuarios));
+      
+      setUser(tempUser);
+      window.dispatchEvent(new Event('storageUpdate'));
+      setIsEditing(false);
+    } catch (error) {
+      alert("Erro: O armazenamento está cheio! Tente usar uma foto menor.");
+    }
   };
 
   if (!user) return null;
@@ -55,7 +61,6 @@ export default function Perfil() {
         <div className="perfil-box">
           <div className="perfil-header">
             <div className="avatar-wrapper">
-              {/* Prioriza a foto de upload, depois a URL do cadastro, depois a padrão */}
               <img 
                 src={tempUser.foto || '/perfil1.png'} 
                 alt="Perfil" 
@@ -72,7 +77,7 @@ export default function Perfil() {
             {isEditing ? (
               <input 
                 className="edit-nome-input"
-                value={tempUser.nome} 
+                value={tempUser.nome || ''} 
                 onChange={e => setTempUser({...tempUser, nome: e.target.value})}
               />
             ) : (
@@ -86,7 +91,7 @@ export default function Perfil() {
               <label>Nome de Usuário</label>
               {isEditing ? (
                 <input 
-                  value={tempUser.usuario} 
+                  value={tempUser.usuario || ''} 
                   onChange={e => setTempUser({...tempUser, usuario: e.target.value})}
                 />
               ) : (
@@ -112,7 +117,7 @@ export default function Perfil() {
             {isEditing ? (
               <>
                 <button onClick={handleSave} className="btn-salvar">Gravar Alterações</button>
-                <button onClick={() => setIsEditing(false)} className="btn-cancelar">Descartar</button>
+                <button onClick={() => { setTempUser(user); setIsEditing(false); }} className="btn-cancelar">Descartar</button>
               </>
             ) : (
               <button onClick={() => setIsEditing(true)} className="btn-editar">Editar Dados</button>

@@ -155,7 +155,7 @@ function Home() {
 
     const handlePrev = () => {
         setStartIndex((prevIndex) => {
-            const nextIndex = prevIndex - 1; // Mudei para 1 para o scroll ser mais suave
+            const nextIndex = prevIndex - 1; 
             return nextIndex < 0 ? books.length - 1 : nextIndex;
         });
     };

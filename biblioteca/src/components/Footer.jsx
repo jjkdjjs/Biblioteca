@@ -1,7 +1,6 @@
 import React from "react";
 import "./Footer.css";
 
-// Configurações - Fácil de mexer!
 const FOOTER_CONFIG = {
   biblioteca: {
     nome: "Biblioteca JDL",
@@ -31,7 +30,6 @@ const Footer = () => {
   return (
     <footer className="footer-container">
       <div className="footer-content">
-        {/* Seção Biblioteca */}
         <div className="footer-section">
           <h2 className="footer-title">{biblioteca.nome}</h2>
           <p className="footer-text">{biblioteca.descricao}</p>
@@ -51,7 +49,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Seção Links Úteis */}
         <div className="footer-section">
           <h3>Links Úteis</h3>
           <ul className="footer-links">
@@ -63,7 +60,6 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Seção Contato */}
         <div className="footer-section">
           <h3>Contato & Horário</h3>
           <div className="footer-contact-list">

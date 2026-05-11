@@ -10,7 +10,6 @@ function LivroDetalhe() {
   const navigate = useNavigate();
   const { adicionarFavorito, isFavorito } = useFavoritos();
 
-  // Dados dos livros 
   const livros = [
     { 
         id: 1, 

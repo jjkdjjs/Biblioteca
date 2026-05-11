@@ -12,30 +12,23 @@ export default function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
     
-    // 1. Busca o banco de dados de usuários cadastrados
     const usuarios = JSON.parse(localStorage.getItem('usuarios_db') || '[]');
     
-    // 2. Procura o usuário que combine Email e Senha
     const user = usuarios.find(u => u.email === email && u.senha === senha);
 
     if (user) {
-      // 3. Salva na sessão ativa do LocalStorage
       localStorage.setItem('usuarioLogado', JSON.stringify(user));
       
-      // 4. Atualiza o Contexto Global (PerfilContext)
       login(user);
       
-      // 5. O "Pulo do Gato": Dispara o evento para o Header atualizar a foto na hora
       window.dispatchEvent(new Event('storageUpdate'));
       
-      // 6. Redireciona para a Home ou Perfil
-      navigate('/'); 
+      navigate('/');
     } else {
       alert('E-mail ou senha incorretos!');
     }
   };
 
-  // Se o usuário já estiver logado, exibe esta tela amigável
   if (usuarioLogado) {
     return (
       <div className="auth-container">
@@ -76,6 +69,9 @@ export default function Login() {
   return (
     <div className="auth-container">
       <div className="auth-card">
+        <div className="auth-header">
+          <button className="btn-back" onClick={() => navigate(-1)}>← Voltar</button>
+        </div>
         <div className="auth-content">
           <h1>Login</h1>
           <form className="auth-form" onSubmit={handleLogin}>
@@ -85,25 +81,25 @@ export default function Login() {
                 className="input-field" 
                 type="email" 
                 placeholder="seu@email.com"
+                value={email}
                 onChange={e => setEmail(e.target.value)} 
                 required 
               />
             </div>
             
-            <div className="input-group" style={{ marginTop: '1.5rem' }}>
+            <div className="input-group">
               <label className="input-label">Senha</label>
               <input 
                 className="input-field" 
                 type="password" 
                 placeholder="••••••••"
+                value={senha}
                 onChange={e => setSenha(e.target.value)} 
                 required 
               />
             </div>
             
-            <button className="btn-primary" type="submit" style={{ marginTop: '2rem' }}>
-              Entrar
-            </button>
+            <button className="btn-primary" type="submit">Entrar</button>
           </form>
           
           <div className="auth-footer">

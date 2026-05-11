@@ -13,11 +13,10 @@ export default function Cadastro() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const usuarios = JSON.parse(localStorage.getItem('usuarios_db') || '[]');
-    // Simula salvamento e já loga o usuário
     usuarios.push(formData);
     localStorage.setItem('usuarios_db', JSON.stringify(usuarios));
-    login(formData); 
-    navigate(-1); // Volta para onde a pessoa estava
+    login(formData);
+    navigate(-1);
   };
 
   return (
@@ -33,30 +32,36 @@ export default function Cadastro() {
               <div className="input-group">
                 <label className="input-label">Nome</label>
                 <input className="input-field" placeholder="Nome completo" required 
+                  value={formData.nome}
                   onChange={e => setFormData({...formData, nome: e.target.value})} />
-              </div>
-              <div className="input-group">
-                <label className="input-label">Usuário</label>
-                <input className="input-field" placeholder="@usuario" required 
-                  onChange={e => setFormData({...formData, usuario: e.target.value})} />
               </div>
             </div>
 
-            <div className="input-group" style={{ marginBottom: '1.5rem' }}>
+            <div className="input-group">
+              <label className="input-label">Usuário</label>
+              <input className="input-field" placeholder="@usuario" required 
+                value={formData.usuario}
+                onChange={e => setFormData({...formData, usuario: e.target.value})} />
+            </div>
+
+            <div className="input-group">
               <label className="input-label">URL da Foto de Perfil</label>
               <input className="input-field" placeholder="Cole o link de uma imagem" 
+                value={formData.foto}
                 onChange={e => setFormData({...formData, foto: e.target.value})} />
             </div>
 
-            <div className="input-group" style={{ marginBottom: '1.5rem' }}>
+            <div className="input-group">
               <label className="input-label">E-mail</label>
               <input className="input-field" type="email" placeholder="seu@email.com" required 
+                value={formData.email}
                 onChange={e => setFormData({...formData, email: e.target.value})} />
             </div>
 
-            <div className="input-group" style={{ marginBottom: '2rem' }}>
+            <div className="input-group">
               <label className="input-label">Senha</label>
               <input className="input-field" type="password" placeholder="••••••••" required 
+                value={formData.senha}
                 onChange={e => setFormData({...formData, senha: e.target.value})} />
             </div>
 
